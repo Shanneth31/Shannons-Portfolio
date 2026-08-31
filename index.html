@@ -34,7 +34,7 @@
     font-weight:800;
     line-height:1.1;
     margin:0;
-    color:var(--ink);
+    color:var(--teal);
   }
   a{color:inherit;}
   img{max-width:100%;display:block;}
@@ -53,34 +53,57 @@
   /* Decorative pale hex strip — top and bottom only */
   .hex-strip{
     position:absolute; left:0; right:0; height:100%;
-    background-image:url('assets/hex-pattern-pale.svg');
-    background-repeat:repeat;
-    opacity:0.55;
+    background-image:url('assets/hex-pattern-bg.png');
+    background-repeat:repeat-x;
+    background-size:auto 340px;
+    background-position:top center;
+    opacity:0.9;
     pointer-events:none;
     z-index:0;
   }
+  footer .hex-strip{ background-position:bottom center; }
   .hero{ position:relative; overflow:hidden; }
   .hero .hex-strip{ top:0; height:420px; -webkit-mask-image:linear-gradient(to bottom, black 40%, transparent 100%); mask-image:linear-gradient(to bottom, black 40%, transparent 100%); }
   footer{ position:relative; overflow:hidden; }
   footer .hex-strip{ bottom:0; height:340px; -webkit-mask-image:linear-gradient(to top, black 40%, transparent 100%); mask-image:linear-gradient(to top, black 40%, transparent 100%); }
 
-  /* ---------- Nav & Footer (matching bars) ---------- */
-  header{ position:sticky; top:0; z-index:60; background:rgba(255,255,255,0.94); backdrop-filter: blur(10px); border-bottom:1px solid rgba(51,51,51,0.1); }
-  .bar{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1220px; margin:0 auto; flex-wrap:wrap; gap:14px; }
-  .brand{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.15rem; color:var(--ink); }
-  .brand .mark{ width:30px; height:30px; background:var(--peach); position:relative; }
-  .brand .mark::after{ content:''; position:absolute; inset:26%; background:var(--teal); clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%); }
-  .navlinks{ display:flex; gap:26px; font-weight:600; font-size:0.92rem; }
-  .navlinks a{ text-decoration:none; color:var(--ink-soft); position:relative; padding:4px 0; }
-  .navlinks a:hover{ color:var(--pink); }
-  .navlinks a::after{ content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0%; background:var(--pink); transition:width .25s ease; }
-  .navlinks a:hover::after{ width:100%; }
-  @media (max-width: 800px){ .navlinks{ display:none; } }
+  /* ---------- Nav & Footer (pill bars) ---------- */
+  header{ position:sticky; top:0; z-index:60; background:rgba(255,255,255,0.92); backdrop-filter: blur(10px); padding:14px 0; }
+  .pill-bar{
+    background:var(--pink); border-radius:100px; padding:10px 22px 10px 10px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    flex-wrap:wrap; box-shadow:var(--shadow);
+  }
+  .bar{ max-width:1220px; margin:0 auto; }
+  .mark-chip{
+    width:46px; height:46px; flex-shrink:0; position:relative;
+    background:var(--peach);
+    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mark-chip::after{
+    content:''; width:52%; height:52%; background:var(--teal);
+    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
+  }
+  .brand{ display:flex; align-items:center; gap:12px; font-weight:800; font-size:1.05rem; color:white; }
+  .navlinks{ display:flex; gap:22px; font-weight:600; font-size:0.86rem; }
+  .navlinks a{ text-decoration:none; color:white; display:flex; align-items:center; gap:8px; opacity:0.92; }
+  .navlinks a:hover{ opacity:1; }
+  .nav-hex{
+    width:22px; height:22px; flex-shrink:0; background:var(--teal);
+    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
+  }
+  @media (max-width: 900px){ .navlinks{ display:none; } }
 
-  .footer-links{ display:flex; gap:28px; flex-wrap:wrap; font-weight:600; font-size:0.9rem; }
-  .footer-links a{ text-decoration:none; color:var(--ink-soft); display:flex; align-items:center; gap:8px; }
-  .footer-links a:hover{ color:var(--pink); }
-  .footer-links .ic{ width:18px; height:18px; flex-shrink:0; }
+  .footer-links{ display:flex; gap:26px; flex-wrap:wrap; font-weight:600; font-size:0.86rem; }
+  .footer-links a{ text-decoration:none; color:white; display:flex; align-items:center; gap:10px; }
+  .footer-links a:hover{ opacity:0.85; }
+  .footer-links .ic-hex{
+    width:26px; height:26px; flex-shrink:0; background:var(--teal);
+    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .footer-links .ic-hex svg{ width:14px; height:14px; }
   .foot-bottom{ text-align:center; padding:18px 0 6px; font-size:0.82rem; color:var(--ink-soft); position:relative; z-index:2; }
 
   /* ---------- Hero ---------- */
@@ -89,10 +112,18 @@
   .hero-top-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap:50px; align-items:center; }
   @media (max-width:820px){ .hero-top-grid{grid-template-columns:1fr; gap:34px;} }
 
-  .hero-portrait{ width:min(360px, 92%); }
+  .hero-col-left{ display:flex; flex-direction:column; align-items:center; }
+  .hero-col-right{ display:flex; flex-direction:column; }
+  .hero-portrait{ width:min(300px, 78%); margin:0 auto; }
 
   .hero h1{ font-size:clamp(2.2rem, 4.6vw, 3.2rem); }
   .hero p.lead{ font-size:1rem; color:var(--ink-soft); max-width:520px; margin-top:14px; line-height:1.65; font-weight:400; }
+
+  .hobbies-block{ margin-top:34px; width:100%; }
+  .hobbies-block h2{ font-size:clamp(1.3rem,2.6vw,1.6rem); text-align:center; margin-bottom:18px; }
+  .icon-grid.small{ gap:18px 12px; }
+  .icon-grid.small .icon-item img{ height:46px; }
+  .icon-grid.small .icon-item span{ font-size:0.72rem; }
 
   .hero-corner-hexes{ display:flex; flex-direction:column; gap:10px; position:absolute; top:0; right:0; }
   .hero-corner-hexes .h{ width:44px; height:44px; }
@@ -134,8 +165,8 @@
     position:relative; width:100%; aspect-ratio: 1 / 0.92;
     cursor:pointer; background:var(--peach);
     transition:transform .3s cubic-bezier(.2,.8,.2,1);
-    clip-path: polygon(25% 1%, 75% 1%, 100% 50%, 75% 99%, 25% 99%, 0% 50%);
-    -webkit-clip-path: polygon(25% 1%, 75% 1%, 100% 50%, 75% 99%, 25% 99%, 0% 50%);
+    clip-path: polygon(27% 6%, 73% 6%, 96% 50%, 73% 94%, 27% 94%, 4% 50%);
+    -webkit-clip-path: polygon(27% 6%, 73% 6%, 96% 50%, 73% 94%, 27% 94%, 4% 50%);
   }
   .hexcell img{width:100%; height:100%; object-fit:cover; display:block;}
   .hexcell:hover{ transform: translateY(-6px) scale(1.03); }
@@ -184,6 +215,29 @@
     clip-path: polygon(25% 1%, 75% 1%, 100% 50%, 75% 99%, 25% 99%, 0% 50%);
   }
   .hex-frame .hexcell{ position:relative; z-index:1; }
+
+  /* Job-section hexagons rotated 90° — point at top/bottom, flat sides */
+  .hex-frame.point-top{ margin-top:0; }
+  .hex-frame.point-top::before{
+    inset:-3%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  .hex-frame.point-top .hexcell{
+    aspect-ratio: 0.88 / 1;
+    clip-path: polygon(50% 3%, 95% 26%, 95% 74%, 50% 97%, 5% 74%, 5% 26%);
+    -webkit-clip-path: polygon(50% 3%, 95% 26%, 95% 74%, 50% 97%, 5% 74%, 5% 26%);
+  }
+
+  /* Wedge that fuses the card seamlessly into the point-top hex below/above it */
+  .hex-connector{
+    width:30%; height:22px; margin:-1px auto 0; position:relative; z-index:2;
+    background:var(--cc, var(--pink));
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  }
+  .hex-connector.flip{
+    margin:0 auto -1px;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  }
 
   .icon-wrap{ position:relative; width:60px; height:60px; margin:10px auto; }
   .icon-hex{ position:absolute; inset:0; }
@@ -242,16 +296,18 @@
 <body>
 
 <header>
-  <div class="bar">
-    <div class="brand"><div class="mark"></div>Shannon Whelan</div>
-    <nav class="navlinks">
-      <a href="#about">About</a>
-      <a href="#incontrast">InContrast</a>
-      <a href="#pbw">Paris Blockchain Week</a>
-      <a href="#bigjigs">Bigjigs Toys</a>
-      <a href="#freelance">Freelance</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <div class="wrap">
+    <div class="bar pill-bar">
+      <div class="brand"><div class="mark-chip"></div>Shannon Whelan</div>
+      <nav class="navlinks">
+        <a href="#about"><span class="nav-hex"></span>About</a>
+        <a href="#incontrast"><span class="nav-hex"></span>InContrast</a>
+        <a href="#pbw"><span class="nav-hex"></span>Paris Blockchain Week</a>
+        <a href="#bigjigs"><span class="nav-hex"></span>Bigjigs Toys</a>
+        <a href="#freelance"><span class="nav-hex"></span>Freelance</a>
+        <a href="#contact"><span class="nav-hex"></span>Contact</a>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -267,40 +323,38 @@
     </div>
 
     <div class="hero-top-grid">
-      <div class="reveal">
+      <div class="reveal hero-col-left">
         <img class="hero-portrait" src="assets/portrait/portrait-hex.png" alt="Self-portrait illustration of Shannon">
+        <div class="ability-block hobbies-block">
+          <h2>Hobbies</h2>
+          <div class="icon-grid small">
+            <div class="icon-item"><img src="assets/icons/hobby-adventures.png" alt="Adventures icon"><span>Adventures</span></div>
+            <div class="icon-item"><img src="assets/icons/hobby-plants.png" alt="Plants icon"><span>Plants</span></div>
+            <div class="icon-item"><img src="assets/icons/hobby-food.png" alt="Food icon"><span>Food</span></div>
+            <div class="icon-item"><img src="assets/icons/hobby-videogames.png" alt="Video Games icon"><span>Video Games</span></div>
+            <div class="icon-item"><img src="assets/icons/hobby-art.png" alt="Art icon"><span>Art</span></div>
+            <div class="icon-item"><img src="assets/icons/hobby-cosplay.png" alt="Cosplay icon"><span>Cosplay</span></div>
+            <div class="icon-item"><img src="assets/icons/hobby-dnd.png" alt="DnD icon"><span>DnD</span></div>
+            <div class="icon-item"><img src="assets/icons/hobby-dinosaurs.png" alt="Dinosaurs icon"><span>Dinosaurs</span></div>
+          </div>
+        </div>
       </div>
-      <div class="reveal">
+      <div class="reveal hero-col-right">
         <h1>Hi I'm Shannon</h1>
         <p class="lead">I have always been a creative ever since I was little drawing Doctor Who characters for my Nan. Now I'm a Graphic Designer and Illustrator with a lot of passion behind me. Work never feels like work when I'm in the creative industry because I love what I do and that shows in everything that I'm working on. I am a hard working, organised creative who loves a challenge and learning new things.</p>
-      </div>
-    </div>
-
-    <div class="ability-block reveal">
-      <h2>Abilities</h2>
-      <div class="icon-grid">
-        <div class="icon-item"><img src="assets/icons/branding.png" alt="Branding icon"><span>Branding</span></div>
-        <div class="icon-item"><img src="assets/icons/illustration.png" alt="Illustration icon"><span>Illustration</span></div>
-        <div class="icon-item"><img src="assets/icons/emails.png" alt="Emails icon"><span>Emails</span></div>
-        <div class="icon-item"><img src="assets/icons/3d-modelling.png" alt="3D Modelling icon"><span>3D Modelling</span></div>
-        <div class="icon-item"><img src="assets/icons/packaging.png" alt="Packaging icon"><span>Packaging</span></div>
-        <div class="icon-item"><img src="assets/icons/catalogues.png" alt="Catalogues icon"><span>Catalogues</span></div>
-        <div class="icon-item"><img src="assets/icons/marketing-design.png" alt="Marketing Design icon"><span>Marketing Design</span></div>
-        <div class="icon-item"><img src="assets/icons/animation-gifs.png" alt="Animation and Gifs icon"><span>Animation/ Gifs</span></div>
-      </div>
-    </div>
-
-    <div class="ability-block reveal">
-      <h2>Hobbies</h2>
-      <div class="icon-grid">
-        <div class="icon-item"><img src="assets/icons/hobby-adventures.png" alt="Adventures icon"><span>Adventures</span></div>
-        <div class="icon-item"><img src="assets/icons/hobby-plants.png" alt="Plants icon"><span>Plants</span></div>
-        <div class="icon-item"><img src="assets/icons/hobby-food.png" alt="Food icon"><span>Food</span></div>
-        <div class="icon-item"><img src="assets/icons/hobby-videogames.png" alt="Video Games icon"><span>Video Games</span></div>
-        <div class="icon-item"><img src="assets/icons/hobby-art.png" alt="Art icon"><span>Art</span></div>
-        <div class="icon-item"><img src="assets/icons/hobby-cosplay.png" alt="Cosplay icon"><span>Cosplay</span></div>
-        <div class="icon-item"><img src="assets/icons/hobby-dnd.png" alt="DnD icon"><span>DnD</span></div>
-        <div class="icon-item"><img src="assets/icons/hobby-dinosaurs.png" alt="Dinosaurs icon"><span>Dinosaurs</span></div>
+        <div class="ability-block">
+          <h2>Abilities</h2>
+          <div class="icon-grid">
+            <div class="icon-item"><img src="assets/icons/branding.png" alt="Branding icon"><span>Branding</span></div>
+            <div class="icon-item"><img src="assets/icons/illustration.png" alt="Illustration icon"><span>Illustration</span></div>
+            <div class="icon-item"><img src="assets/icons/emails.png" alt="Emails icon"><span>Emails</span></div>
+            <div class="icon-item"><img src="assets/icons/3d-modelling.png" alt="3D Modelling icon"><span>3D Modelling</span></div>
+            <div class="icon-item"><img src="assets/icons/packaging.png" alt="Packaging icon"><span>Packaging</span></div>
+            <div class="icon-item"><img src="assets/icons/catalogues.png" alt="Catalogues icon"><span>Catalogues</span></div>
+            <div class="icon-item"><img src="assets/icons/marketing-design.png" alt="Marketing Design icon"><span>Marketing Design</span></div>
+            <div class="icon-item"><img src="assets/icons/animation-gifs.png" alt="Animation and Gifs icon"><span>Animation/ Gifs</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -397,8 +451,8 @@
           <span class="chain-title">Prepress</span>
           I'm responsible for prepress preparation across a wide range of cardboard POS. This involves checking bleed, colour accuracy in CMYK, image resolution, and file linking, ensuring all elements align correctly with cutter lines.
         </div>
-        
-        <div class="hex-frame overlap-up">
+        <div class="hex-connector" style="--cc:#F08E94;"></div>
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/incontrast/harrypotter-kinderjoy-cut.jpg" data-cap="Harry Potter x Kinder Joy FSDU">
             <img src="assets/incontrast/harrypotter-kinderjoy-cut.jpg" alt="Harry Potter x Kinder Joy FSDU"></div>
         </div>
@@ -417,11 +471,12 @@
           <img class="icon-logo" src="assets/software/rhino.png" alt="">
         </div>
         
-        <div class="hex-frame below-icon">
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/incontrast/flipz-fsdu-cut.jpg" data-cap="Flipz retail display unit">
             <img src="assets/incontrast/flipz-fsdu-cut.jpg" alt="Flipz retail display unit"></div>
         </div>
-        <div class="card-round-bottom overlap-up" style="background:#A5D7DB;">
+        <div class="hex-connector flip" style="--cc:#A5D7DB;"></div>
+        <div class="card-round-bottom" style="background:#A5D7DB;">
           <span class="chain-title">3D + Conceptual Development</span>
           Alongside prepress, I've developed skills in Rhino 8, producing industry-standard 3D models of POS structures. I conceptualise high-impact display solutions and help bring "wow factor" campaigns to life.
         </div>
@@ -431,8 +486,8 @@
           <span class="chain-title">Studio Inc</span>
           Working with the team, I help manage a shared client inbox, scheduling and coordinating projects including 2D POS, digital marketing and externally printed materials — balancing multiple deadlines and client expectations.
         </div>
-        
-        <div class="hex-frame overlap-up">
+        <div class="hex-connector" style="--cc:#F9BE87;"></div>
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/incontrast/capability-pillars.jpg" data-cap="Studio Inc capability pillar signage">
             <img src="assets/incontrast/capability-pillars.jpg" alt="Studio Inc capability pillar signage"></div>
         </div>
@@ -451,11 +506,12 @@
           <img class="icon-logo" src="assets/software/ai.png" alt="">
         </div>
         
-        <div class="hex-frame below-icon">
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/incontrast/lucozade-aj-warehouse.jpg" data-cap="Lucozade Anthony Joshua edition POS build">
             <img src="assets/incontrast/lucozade-aj-warehouse.jpg" alt="Lucozade Anthony Joshua edition POS build"></div>
         </div>
-        <div class="card-round-bottom overlap-up" style="background:#F6BCC3;">
+        <div class="hex-connector flip" style="--cc:#F6BCC3;"></div>
+        <div class="card-round-bottom" style="background:#F6BCC3;">
           <span class="chain-title">POS Print Design</span>
           We artwork a wide range of cardboard POS, from FSDUs to smaller 2D items like barkers and wobblers. Working from a single campaign concept, I adapt artwork across multiple cutter guides for consistency and precision.
         </div>
@@ -498,8 +554,8 @@
           <span class="chain-title">Onsite Print Marketing</span>
           As Graphic Design Manager, I led my team in creating all print marketing for our event, including banners, merchandise, tickets, coffee cups and floor stickers — every design meticulously crafted, print-ready and accurately sized.
         </div>
-        
-        <div class="hex-frame overlap-up">
+        <div class="hex-connector" style="--cc:#F08E94;"></div>
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/pbw/shannon-blue-pillar.png" data-cap="Shannon at the PBW venue installation">
             <img src="assets/pbw/shannon-blue-pillar.png" alt="Shannon at the PBW venue installation"></div>
         </div>
@@ -518,11 +574,12 @@
           <img class="icon-logo" src="assets/software/figma.png" alt="">
         </div>
         
-        <div class="hex-frame below-icon">
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/pbw/vip-dinner-laptop.png" data-cap="VIP Dinner sub-site design">
             <img src="assets/pbw/vip-dinner-laptop.png" alt="VIP Dinner sub-site design"></div>
         </div>
-        <div class="card-round-bottom overlap-up" style="background:#A5D7DB;">
+        <div class="hex-connector flip" style="--cc:#A5D7DB;"></div>
+        <div class="card-round-bottom" style="background:#A5D7DB;">
           <span class="chain-title">Website Design</span>
           I design our website using Figma, focusing on a user-friendly experience that seamlessly guides visitors towards purchasing tickets, balancing aesthetics with functionality and a clear path to conversion.
         </div>
@@ -532,8 +589,8 @@
           <span class="chain-title">Brochure</span>
           I design brochures on Adobe Illustrator for our sales team across various events, ensuring every brochure aligns with each event's identity while staying cohesive, polished, and persuasive to potential clients.
         </div>
-        
-        <div class="hex-frame overlap-up">
+        <div class="hex-connector" style="--cc:#F9BE87;"></div>
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/pbw/brochure-mockup.png" data-cap="Sales brochure, designed in Illustrator">
             <img src="assets/pbw/brochure-mockup.png" alt="Sales brochure, designed in Illustrator"></div>
         </div>
@@ -552,11 +609,12 @@
           <img class="icon-logo" src="assets/software/figma.png" alt="">
         </div>
         
-        <div class="hex-frame below-icon">
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/pbw/feedback-emails.png" data-cap="Post-event feedback email design">
             <img src="assets/pbw/feedback-emails.png" alt="Post-event feedback email design"></div>
         </div>
-        <div class="card-round-bottom overlap-up" style="background:#F6BCC3;">
+        <div class="hex-connector flip" style="--cc:#F6BCC3;"></div>
+        <div class="card-round-bottom" style="background:#F6BCC3;">
           <span class="chain-title">Emails</span>
           I design emails using Illustrator, Canva or Figma, tailored to different audiences with a focus on driving sales through compelling visuals and clear calls to action across promotions and event announcements.
         </div>
@@ -585,8 +643,8 @@
           <span class="chain-title">Packaging</span>
           I created packaging for our products, carefully adapting our guidelines to accommodate various box sizes, ensuring a consistent brand appearance and coordinating with printers to verify final quality.
         </div>
-        
-        <div class="hex-frame overlap-up">
+        <div class="hex-connector" style="--cc:#F08E94;"></div>
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/bigjigs/shannon-holding-set-cut.jpg" data-cap="Shannon with the Roadway Race Day set">
             <img src="assets/bigjigs/shannon-holding-set-cut.jpg" alt="Shannon with the Roadway Race Day set"></div>
         </div>
@@ -605,11 +663,12 @@
           <img class="icon-logo" src="assets/software/ai.png" alt="">
         </div>
         
-        <div class="hex-frame below-icon">
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/bigjigs/website-laptop.png" data-cap="Bigjigs website banner design">
             <img src="assets/bigjigs/website-laptop.png" alt="Bigjigs website banner design"></div>
         </div>
-        <div class="card-round-bottom overlap-up" style="background:#A5D7DB;">
+        <div class="hex-connector flip" style="--cc:#A5D7DB;"></div>
+        <div class="card-round-bottom" style="background:#A5D7DB;">
           <span class="chain-title">Web Banners</span>
           I particularly enjoyed designing web banners, creating unique backgrounds, vectors and assets tailored to each theme while adhering to brand guidelines — eye-catching and visually interesting, never cluttered.
         </div>
@@ -619,8 +678,8 @@
           <span class="chain-title">Catalogue</span>
           I collaborated with other designers to produce 10 annual catalogues, dividing sections and using engaging, easy-to-navigate InDesign layouts with diverse photography, vectors and text.
         </div>
-        
-        <div class="hex-frame overlap-up">
+        <div class="hex-connector" style="--cc:#F9BE87;"></div>
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/bigjigs/catalogue-spread.png" data-cap="Annual catalogue spread">
             <img src="assets/bigjigs/catalogue-spread.png" alt="Annual catalogue spread"></div>
         </div>
@@ -639,11 +698,12 @@
           <img class="icon-logo" src="assets/software/blender.png" alt="">
         </div>
         
-        <div class="hex-frame below-icon">
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/bigjigs/dinosaur-playset-cut.jpg" data-cap="Dinosaur wooden playset design">
             <img src="assets/bigjigs/dinosaur-playset-cut.jpg" alt="Dinosaur wooden playset design"></div>
         </div>
-        <div class="card-round-bottom overlap-up" style="background:#F6BCC3;">
+        <div class="hex-connector flip" style="--cc:#F6BCC3;"></div>
+        <div class="card-round-bottom" style="background:#F6BCC3;">
           <span class="chain-title">Toy Design</span>
           I had the opportunity to design children's toys, learning new 3D software and producing factory-standard technical and art files — ensuring toys were safe and compliant with global guidelines.
         </div>
@@ -672,8 +732,8 @@
           <span class="chain-title">Wedding Stationery</span>
           Wedding invitations are exciting to create — customers want something that shouts "we're getting married" but also want it personal. I ask couples about their interests so I can create a truly personal invitation.
         </div>
-        
-        <div class="hex-frame overlap-up">
+        <div class="hex-connector" style="--cc:#F08E94;"></div>
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/freelance/wedding-invite.png" data-cap="Wedding invitation and RSVP card">
             <img src="assets/freelance/wedding-invite.png" alt="Wedding invitation and RSVP card"></div>
         </div>
@@ -692,11 +752,12 @@
           <img class="icon-logo" src="assets/software/ai.png" alt="">
         </div>
         
-        <div class="hex-frame below-icon">
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/freelance/business-cards.png" data-cap="Photography Chrome business cards">
             <img src="assets/freelance/business-cards.png" alt="Photography Chrome business cards"></div>
         </div>
-        <div class="card-round-bottom overlap-up" style="background:#A5D7DB;">
+        <div class="hex-connector flip" style="--cc:#A5D7DB;"></div>
+        <div class="card-round-bottom" style="background:#A5D7DB;">
           <span class="chain-title">Business Cards</span>
           A recognisable brand has a pinnacle logo that needs to be plastered everywhere! I love word and picture play — creating a logo that emphasises the brand's identity in a fun, memorable way.
         </div>
@@ -706,8 +767,8 @@
           <span class="chain-title">Photo Edits</span>
           Photo manipulation is great fun — from levitating portraits to popping a dinosaur into wedding photos. A lot of my work has been for cosplayers wanting a relevant background to their costume.
         </div>
-        
-        <div class="hex-frame overlap-up">
+        <div class="hex-connector" style="--cc:#F9BE87;"></div>
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/freelance/surreal-photo-edit.png" data-cap="Surreal photo manipulation">
             <img src="assets/freelance/surreal-photo-edit.png" alt="Surreal photo manipulation"></div>
         </div>
@@ -726,11 +787,12 @@
           <img class="icon-logo" src="assets/software/ai.png" alt="">
         </div>
         
-        <div class="hex-frame below-icon">
+        <div class="hex-frame point-top">
           <div class="hexcell" data-full="assets/freelance/bouquet-sketch.png" data-cap="Hand-drawn bouquet print">
             <img src="assets/freelance/bouquet-sketch.png" alt="Hand-drawn bouquet print"></div>
         </div>
-        <div class="card-round-bottom overlap-up" style="background:#F6BCC3;">
+        <div class="hex-connector flip" style="--cc:#F6BCC3;"></div>
+        <div class="card-round-bottom" style="background:#F6BCC3;">
           <span class="chain-title">Personalised Prints</span>
           There's always a spot in the house that could do with a print — from wedding bouquets to whimsical bathroom posters, starting from pen and paper then cleaning up in Illustrator.
         </div>
@@ -754,21 +816,19 @@
 <footer id="contact">
   <div class="hex-strip"></div>
   <div class="wrap" style="position:relative; z-index:2;">
-    <div class="bar" style="padding-left:0; padding-right:0;">
-      <div class="brand">
-        <div class="mark"></div>
-      </div>
-      <div class="footer-links reveal">
+    <div class="bar pill-bar reveal">
+      <div class="brand"><div class="mark-chip"></div></div>
+      <div class="footer-links">
         <a href="mailto:shannonwhelan31@yahoo.co.uk">
-          <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 12l9-6H3l9 6z" stroke="#F08E94" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 6v12h18V6" stroke="#F08E94" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <span class="ic-hex"><svg viewBox="0 0 24 24" fill="none"><path d="M12 12l9-6H3l9 6z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 6v12h18V6" stroke="white" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
           shannonwhelan31@yahoo.co.uk
         </a>
         <a href="https://instagram.com/shanneth31" target="_blank" rel="noopener">
-          <svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#F08E94" stroke-width="1.8"/><path d="M8 16l4-7 4 7-4-2-4 2z" fill="#F08E94"/></svg>
+          <span class="ic-hex"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.8"/><path d="M8 16l4-7 4 7-4-2-4 2z" fill="white"/></svg></span>
           #Simply.Creative.Store · #Shanneth31
         </a>
         <a href="tel:07927676214">
-          <svg class="ic" viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="2" stroke="#F08E94" stroke-width="1.8"/><circle cx="12" cy="18" r="0.8" fill="#F08E94"/></svg>
+          <span class="ic-hex"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="2" stroke="white" stroke-width="1.8"/><circle cx="12" cy="18" r="0.8" fill="white"/></svg></span>
           07927676214
         </a>
       </div>
