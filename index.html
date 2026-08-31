@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shannon Whelan — Graphic Designer & Illustrator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFFDF8;
+    --ink:#4A4458;
+    --ink-soft:#7A7288;
+    --heading:#6FB8B3;
+    --heading-deep:#4E9C97;
+    --teal:#8ED2C9;
+    --teal-deep:#4E9C97;
+    --coral:#F0969C;
+    --coral-deep:#E9747C;
+    --pink:#F5C2CB;
+    --peach:#F7C48C;
+    --peach-deep:#EDA857;
+    --white:#FFFFFF;
+    --shadow: 0 14px 34px -16px rgba(74,68,88,0.28);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Nunito',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4,.display{
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    line-height:1.08;
+    margin:0;
+    color:var(--heading);
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1220px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--coral);color:white;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  .hex{
+    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
+    -webkit-clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
+  }
+  .clr-pink{ background:var(--coral) !important; }
+  .clr-teal{ background:var(--teal-deep) !important; }
+  .clr-peach{ background:var(--peach-deep) !important; }
+
+  .hexbg{
+    position:relative;
+    background-image:url('assets/hex-pattern-pale.svg');
+    background-repeat:repeat;
+    background-position: 0 0;
+  }
+
+  /* ---------- Top nav ---------- */
+  header{
+    position:sticky; top:0; z-index:60;
+    background:rgba(255,253,248,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid rgba(74,68,88,0.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px; max-width:1220px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Baloo 2',cursive; font-weight:800; font-size:1.2rem; color:var(--ink);}
+  .brand .mark{ width:32px; height:32px; background:linear-gradient(135deg, var(--coral), var(--peach)); }
+  .navlinks{display:flex; gap:24px; font-weight:800; font-size:0.9rem;}
+  .navlinks a{text-decoration:none; color:var(--ink-soft); position:relative; padding:4px 0;}
+  .navlinks a:hover{color:var(--coral-deep);}
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:3px; width:0%;
+    background:var(--coral); border-radius:3px; transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  @media (max-width: 800px){ .navlinks{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:80px 0 40px; position:relative; }
+  .hero-top-decoration{ position:absolute; top:-10px; right:4%; width:230px; height:230px; opacity:.9; pointer-events:none; }
+  .hero .wrap{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap:50px; align-items:center; position:relative; z-index:2; }
+  @media (max-width:820px){ .hero .wrap{grid-template-columns:1fr; gap:34px;} }
+
+  .hero-portrait-wrap{ position:relative; }
+  .hero-portrait{ width:min(360px, 86%); aspect-ratio:1/1.05; position:relative; }
+  .hero-portrait .ring{ position:absolute; inset:0; border:3px solid var(--coral); transform: translate(24px,20px); z-index:1; }
+  .hero-portrait .fill{ position:absolute; inset:0; background:var(--teal); z-index:0; transform:translate(-6px,-6px);}
+  .hero-portrait img{ width:100%; height:100%; object-fit:cover; position:relative; z-index:2; }
+
+  .hero h1{font-size:clamp(2.4rem, 5vw, 3.6rem);}
+  .hero p.lead{ font-size:1.05rem; color:var(--ink-soft); max-width:520px; margin-top:16px; line-height:1.65; }
+  .hero-ctas{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Baloo 2',cursive; font-weight:700; font-size:0.98rem;
+    padding:13px 26px; border-radius:100px; text-decoration:none;
+    transition:transform .2s ease, box-shadow .2s ease;
+    border:none; cursor:pointer;
+  }
+  .btn-primary{background:var(--coral-deep); color:white; box-shadow:0 12px 24px -10px rgba(233,116,124,0.55);}
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 16px 30px -10px rgba(233,116,124,0.65);}
+  .btn-ghost{background:white; color:var(--ink); border:2px solid rgba(74,68,88,0.14);}
+  .btn-ghost:hover{transform:translateY(-3px); border-color:var(--teal-deep);}
+
+  /* ---------- Section shell ---------- */
+  section{padding:70px 0;}
+  .section-head{ margin-bottom:44px; position:relative; z-index:2;}
+  .section-head h2{font-size:clamp(1.9rem,4vw,2.7rem);}
+  .section-head p.subhead{color:var(--ink-soft); font-size:0.98rem; margin-top:6px; font-weight:700;}
+
+  /* ---------- Abilities / Hobbies ---------- */
+  .icon-float-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; align-items:center; position:relative; z-index:2;}
+  @media (max-width:820px){ .icon-float-grid{grid-template-columns:repeat(2,1fr);} }
+  .icon-float{ padding:14px; }
+  .icon-float img{ width:100%; height:auto; filter:drop-shadow(0 14px 20px rgba(74,68,88,0.16)); }
+  .hobby-card{ border-radius:22px; overflow:hidden; box-shadow:var(--shadow); }
+  .hobby-card img{ width:100%; display:block; }
+
+  /* ---------- Software Skills ---------- */
+  .skills-layout{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:40px; position:relative; z-index:2;}
+  @media (max-width:900px){ .skills-layout{grid-template-columns:1fr;} }
+  .skill-row{ display:flex; align-items:center; gap:16px; margin-bottom:20px; }
+  .skill-hex{
+    width:64px; height:64px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Baloo 2',cursive; font-weight:800; font-size:1.05rem; color:white;
+  }
+  .skill-bar{ flex:1; height:40px; border-radius:100px; border:2px solid var(--coral); background:white; position:relative; overflow:hidden; }
+  .skill-bar-fill{ position:absolute; inset:2px; border-radius:100px; background:var(--teal); }
+  .skill-others{ margin-top:26px; font-size:0.92rem; color:var(--ink-soft); }
+  .skill-others b{ color:var(--ink); display:block; margin-bottom:8px; }
+  .skill-others ul{ columns:2; padding-left:18px; margin:0; line-height:1.9; }
+
+  .skills-gallery{ position:relative; }
+  .skills-hexgrid{ display:grid; grid-template-columns:repeat(3,1fr); }
+  .skills-hexgrid .hexcell{ margin-right:-25%; box-sizing:border-box; }
+  .skills-hexgrid .hexcell:nth-child(3n+2){ margin-top:46%; }
+  @media (max-width:900px){ .skills-hexgrid{grid-template-columns:repeat(2,1fr);} .skills-hexgrid .hexcell:nth-child(3n+2){margin-top:0;} .skills-hexgrid .hexcell:nth-child(2n){margin-top:46%;} }
+
+  /* ---------- Hexcell (photo tile) ---------- */
+  .hexcell{
+    position:relative; width:100%; aspect-ratio: 1 / 0.92;
+    cursor:pointer; background:var(--peach);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1);
+    clip-path: polygon(25% 1%, 75% 1%, 100% 50%, 75% 99%, 25% 99%, 0% 50%);
+    -webkit-clip-path: polygon(25% 1%, 75% 1%, 100% 50%, 75% 99%, 25% 99%, 0% 50%);
+  }
+  .hexcell img{width:100%; height:100%; object-fit:cover; display:block;}
+  .hexcell:hover{ transform: translateY(-8px) scale(1.03); }
+  .hexcell .cap{
+    position:absolute; bottom:9%; left:0; right:0; text-align:center;
+    font-family:'Baloo 2',cursive; font-weight:700; font-size:0.76rem; color:white;
+    opacity:0; transition:opacity .25s ease; text-shadow:0 2px 6px rgba(0,0,0,0.55);
+    pointer-events:none;
+  }
+  .hexcell:hover .cap{opacity:1;}
+
+  /* ---------- Job sections ---------- */
+  .job-section{ position:relative; padding:80px 0 40px; }
+  .job-header{ margin-bottom:16px; position:relative; z-index:2;}
+  .job-header h2{font-size:clamp(2rem,4.5vw,2.9rem);}
+  .job-header .role{ color:var(--ink-soft); font-weight:800; font-size:1rem; margin-top:4px;}
+  .job-intro{ max-width:760px; color:var(--ink-soft); line-height:1.65; margin-bottom:56px; position:relative; z-index:2;}
+
+  .chain-row{ display:grid; grid-template-columns:repeat(4, 1fr); gap:0 30px; position:relative; z-index:2; align-items:start; }
+  @media (max-width:1100px){ .chain-row{grid-template-columns:repeat(2,1fr); gap:60px 30px;} }
+  @media (max-width:640px){ .chain-row{grid-template-columns:1fr; max-width:380px; margin-left:auto; margin-right:auto;} }
+
+  .chain-col{ display:flex; flex-direction:column; align-items:stretch; }
+
+  .chain-shape{
+    width:100%; padding:26px 20px; color:white; text-align:center;
+    font-size:0.84rem; line-height:1.6; font-weight:600; box-sizing:border-box;
+  }
+  .chain-shape .chain-title{ font-family:'Baloo 2',cursive; font-weight:700; font-size:0.8rem; letter-spacing:.04em; text-transform:uppercase; display:block; margin-bottom:8px; opacity:.92;}
+  .shape-a{ clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%); padding-bottom:50px; }
+  .shape-b{ clip-path: polygon(50% 0, 100% 12%, 100% 100%, 0 100%, 0 12%); padding-top:50px; margin-top:-2px; }
+
+  .chain-hex{ width:78%; margin:-2px auto; }
+  .chain-hex .hexcell{ aspect-ratio:1/0.92; }
+
+  .icon-wrap{ position:relative; width:74px; height:74px; margin:10px auto; }
+  .icon-hex{ position:absolute; inset:0; }
+  .chain-icon{
+    position:absolute; width:42px; height:42px; left:50%; top:50%; transform:translate(-50%,-50%);
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Baloo 2',cursive; font-weight:800; color:white; font-size:0.82rem;
+    box-shadow:0 4px 10px rgba(0,0,0,0.25);
+  }
+  .chain-pill{
+    width:78%; height:32px; border-radius:100px; border:2px solid var(--coral);
+    margin:0 auto; background:white; position:relative; overflow:hidden;
+  }
+  .chain-pill-fill{ position:absolute; inset:2px; border-radius:100px; background:var(--teal); }
+
+  /* ---------- Single-row divider honeycomb ---------- */
+  .divider-row{
+    display:flex; justify-content:center; align-items:flex-start;
+    margin:70px 0 10px; position:relative; z-index:2; flex-wrap:wrap;
+  }
+  .divider-hex{ width:15%; max-width:180px; margin:0 -1.6%; }
+  .divider-hex.offset{ margin-top:9%; }
+  @media (max-width:900px){
+    .divider-hex{ width:28%; margin:0 -3%; }
+    .divider-hex.offset{ margin-top:16%; }
+  }
+  @media (max-width:560px){
+    .divider-hex{ width:42%; margin:0 -4% 10px; }
+    .divider-hex.offset{ margin-top:20%; }
+  }
+
+  /* InContrast InPerson callout */
+  .callout{
+    margin:70px 0 20px; padding:44px; border-radius:30px; position:relative; z-index:2;
+    background: linear-gradient(135deg, #4A4458, #6a5f7e);
+    color:white; display:grid; grid-template-columns:1.1fr 0.9fr; gap:34px; align-items:center;
+  }
+  @media (max-width:800px){ .callout{grid-template-columns:1fr;} }
+  .callout .eyebrow{
+    display:inline-block; font-weight:800; font-size:0.8rem; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--peach); background:rgba(255,255,255,0.12); padding:7px 14px; border-radius:100px; margin-bottom:14px;
+  }
+  .callout h3{ font-size:1.8rem; color:white; margin-bottom:12px; }
+  .callout p{ color:rgba(255,255,255,0.8); line-height:1.6; font-size:1rem; }
+  .callout-gallery{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .callout-gallery img{ border-radius:16px; height:126px; width:100%; object-fit:cover; cursor:pointer; transition:transform .2s ease; }
+  .callout-gallery img:hover{ transform:scale(1.04); }
+
+  /* ---------- Footer ---------- */
+  footer{ position:relative; padding:80px 0 50px; }
+  .footer-decoration{ position:absolute; top:6%; right:4%; width:170px; height:170px; opacity:.9; }
+  .footer-bar{
+    background:var(--coral); border-radius:100px; padding:18px 34px;
+    display:flex; align-items:center; gap:40px; flex-wrap:wrap;
+    position:relative; z-index:2; box-shadow:var(--shadow);
+  }
+  @media (max-width:760px){
+    .footer-bar{ border-radius:28px; flex-direction:column; align-items:flex-start; gap:20px; padding:28px; }
+    .footer-decoration{ display:none; }
+    .footer-bar > .footer-hex{ display:none; }
+  }
+  .footer-bar .footer-hex{ width:66px; height:66px; flex-shrink:0; background:var(--peach); display:flex; align-items:center; justify-content:center; }
+  .footer-item{ display:flex; align-items:center; gap:14px; }
+  .footer-item .fhex{ width:44px; height:44px; flex-shrink:0; background:var(--teal); display:flex; align-items:center; justify-content:center; color:white; }
+  .footer-item a{ color:white; text-decoration:none; font-weight:800; font-family:'Baloo 2',cursive; font-size:0.95rem; line-height:1.3; }
+  .foot-bottom{ margin-top:36px; text-align:center; font-size:0.85rem; color:var(--ink-soft); position:relative; z-index:2; }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:999; display:none;
+    align-items:center; justify-content:center; padding:40px;
+    background:rgba(74,68,88,0.85); backdrop-filter:blur(6px);
+  }
+  .lightbox.open{display:flex; animation:fadeIn .25s ease;}
+  @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+  .lightbox-inner{ position:relative; max-width:min(900px, 92vw); max-height:88vh; animation:pop .3s cubic-bezier(.2,.9,.25,1.2); }
+  @keyframes pop{ from{transform:scale(0.85); opacity:0;} to{transform:scale(1); opacity:1;} }
+  .lightbox-inner img{ max-width:100%; max-height:88vh; border-radius:18px; box-shadow:0 30px 60px rgba(0,0,0,0.5); display:block; margin:0 auto; }
+  .lightbox-close{
+    position:absolute; top:-46px; right:0; background:white; border:none;
+    width:38px; height:38px; border-radius:50%; font-size:1.2rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-weight:800;
+    box-shadow:0 8px 16px rgba(0,0,0,0.3);
+  }
+  .lightbox-cap{ color:white; text-align:center; margin-top:14px; font-family:'Baloo 2',cursive; font-weight:600; }
+
+  .reveal{transition:opacity .7s ease, transform .7s ease;}
+  html.js-anim .reveal{opacity:0; transform:translateY(24px);}
+  html.js-anim .reveal.show{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><div class="mark hex"></div>Shannon Whelan</div>
+    <nav class="navlinks">
+      <a href="#about">About</a>
+      <a href="#incontrast">InContrast</a>
+      <a href="#pbw">Paris Blockchain Week</a>
+      <a href="#bigjigs">Bigjigs Toys</a>
+      <a href="#freelance">Freelance</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero hexbg">
+  <svg class="hero-top-decoration" viewBox="0 0 230 230" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="150,10 195,35 195,85 150,110 105,85 105,35" fill="var(--coral)"/>
+    <polygon points="70,80 115,105 115,155 70,180 25,155 25,105" fill="none" stroke="var(--peach-deep)" stroke-width="3"/>
+    <polygon points="160,95 205,120 205,170 160,195 115,170 115,120" fill="var(--teal)"/>
+  </svg>
+  <div class="wrap">
+    <div class="hero-portrait-wrap reveal">
+      <div class="hero-portrait">
+        <div class="fill hex"></div>
+        <div class="ring hex"></div>
+        <img class="hex" src="assets/portrait/portrait.jpg" alt="Self-portrait illustration of Shannon">
+      </div>
+    </div>
+    <div class="reveal">
+      <h1>Hi I'm Shannon</h1>
+      <p class="lead">I have always been a creative ever since I was little drawing Doctor Who characters for my Nan. Now I'm a Graphic Designer and Illustrator with a lot of passion behind me. Work never feels like work when I'm in the creative industry because I love what I do and that shows in everything that I'm working on. I am a hard working, organised creative who loves a challenge and learning new things.</p>
+      <div class="hero-ctas">
+        <a href="#incontrast" class="btn btn-primary">See my work ↓</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABILITIES -->
+<section id="about" class="hexbg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Abilities &amp; Hobbies</h2>
+      <p class="subhead">Graphic Design Manager turned Studio Designer — leading teams, building brands, modelling toys.</p>
+    </div>
+    <div class="icon-float-grid reveal">
+      <div class="icon-float"><img src="assets/icons/icons-branding-illustration.png" alt="Branding and Illustration icons"></div>
+      <div class="icon-float"><img src="assets/icons/icons-emails-3d-animation.png" alt="Emails, 3D Modelling and Animation icons"></div>
+      <div class="icon-float"><img src="assets/icons/icons-packaging-catalogues-marketing.png" alt="Packaging, Catalogues and Marketing Design icons"></div>
+    </div>
+    <div class="icon-float-grid reveal" style="margin-top:36px; grid-template-columns:repeat(2,1fr); max-width:760px;">
+      <div class="hobby-card"><img src="assets/icons/icons-hobbies-1.png" alt="Plants, Food, DnD and Dinosaurs hobby icons"></div>
+      <div class="hobby-card"><img src="assets/icons/icons-hobbies-2.png" alt="Adventures, Video Games, Art and Cosplay hobby icons"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOFTWARE SKILLS -->
+<section class="hexbg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Software Skills</h2>
+      <p class="subhead">Heavily in the Adobe Creative Cloud for print and online marketing, comfortable managing teams with Monday, Asana, Slack and Miro.</p>
+    </div>
+
+    <div class="skills-layout">
+      <div class="reveal">
+        <div class="skill-row">
+          <div class="skill-hex hex" style="background:#1A0A02;">Ai</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="right:8%;"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-hex hex" style="background:#001E36;">Ps</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="right:14%;"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-hex hex" style="background:#450036;">Id</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="right:10%;"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-hex hex" style="background:#0A0A0A;">Fi</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="right:20%;"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-hex hex" style="background:#00005B;">Pr</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="right:16%;"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-hex hex" style="background:#E8792B;">Bl</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="right:12%;"></div></div>
+        </div>
+
+        <div class="skill-others">
+          <b>Others include:</b>
+          <ul>
+            <li>Monday / Asana</li>
+            <li>Fusion 360</li>
+            <li>Rhino 8</li>
+            <li>Maya</li>
+            <li>Adobe Libraries</li>
+            <li>Maya Mudbox</li>
+            <li>After Effects</li>
+            <li>Word / Google Docs</li>
+            <li>Canva</li>
+            <li>Excel / Google Sheets</li>
+            <li>Hubspot / Klaviyo</li>
+            <li>Powerpoint / Google Slides</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="skills-gallery reveal">
+        <div class="skills-hexgrid">
+          <div class="hexcell" data-full="assets/bigjigs/indx-tablet-post.png" data-cap="INDX Home Toy trade show post">
+            <img src="assets/bigjigs/indx-tablet-post.png" alt="INDX Home Toy fair social post"></div>
+          <div class="hexcell" data-full="assets/pbw/time-is-ticking-phone.png" data-cap="Time is ticking countdown post">
+            <img src="assets/pbw/time-is-ticking-phone.png" alt="Time is ticking countdown post"></div>
+          <div class="hexcell" data-full="assets/pbw/sponsors-tablet-post.png" data-cap="2024 sponsors social post">
+            <img src="assets/pbw/sponsors-tablet-post.png" alt="PBW sponsors social post"></div>
+          <div class="hexcell" data-full="assets/bigjigs/toy-fair-phone-post.png" data-cap="Toy Fair recap social post">
+            <img src="assets/bigjigs/toy-fair-phone-post.png" alt="Toy Fair social post"></div>
+          <div class="hexcell" data-full="assets/pbw/take-the-bull-tablet.png" data-cap="Take the bull by the horns campaign">
+            <img src="assets/pbw/take-the-bull-tablet.png" alt="Take the bull by the horns post"></div>
+          <div class="hexcell" data-full="assets/incontrast/flipz-socials.jpg" data-cap="Flipz social ad variants">
+            <img src="assets/incontrast/flipz-socials.jpg" alt="Flipz social ad mockups"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCONTRAST -->
+<section id="incontrast" class="job-section hexbg">
+  <div class="wrap">
+    <div class="job-header reveal">
+      <h2>InContrast</h2>
+      <div class="role">Graphic Designer · May 2025 – present</div>
+    </div>
+    <p class="job-intro reveal">My main jobs at InContrast include designing and conceptualising print ready files and doing any studio work that comes into our inbox varying from digital to print work.</p>
+
+    <div class="chain-row reveal">
+      
+      <div class="chain-col">
+        <div class="chain-shape shape-a clr-pink">
+          <span class="chain-title">Prepress</span>
+          I'm responsible for prepress preparation across a wide range of cardboard POS. This involves checking bleed, colour accuracy in CMYK, image resolution, and file linking, ensuring all elements align correctly with cutter lines.
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/incontrast/harrypotter-kinderjoy-cut.jpg" data-cap="Harry Potter x Kinder Joy FSDU">
+            <img src="assets/incontrast/harrypotter-kinderjoy-cut.jpg" alt="Harry Potter x Kinder Joy FSDU"></div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#111111;">R8</div>
+        </div>
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:15%;"></div></div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:30%;"></div></div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#111111;">R8</div>
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/incontrast/flipz-fsdu-cut.jpg" data-cap="Flipz retail display unit">
+            <img src="assets/incontrast/flipz-fsdu-cut.jpg" alt="Flipz retail display unit"></div>
+        </div>
+        <div class="chain-shape shape-b clr-teal">
+          <span class="chain-title">3D + Conceptual Development</span>
+          Alongside prepress, I've developed skills in Rhino 8, producing industry-standard 3D models of POS structures. I conceptualise high-impact display solutions and help bring "wow factor" campaigns to life.
+        </div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-shape shape-a clr-peach">
+          <span class="chain-title">Studio Inc</span>
+          Working with the team, I help manage a shared client inbox, scheduling and coordinating projects including 2D POS, digital marketing and externally printed materials — balancing multiple deadlines and client expectations.
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/incontrast/capability-pillars.jpg" data-cap="Studio Inc capability pillar signage">
+            <img src="assets/incontrast/capability-pillars.jpg" alt="Studio Inc capability pillar signage"></div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-peach"></div>
+          <div class="chain-icon" style="background:#1A0A02;">Ai</div>
+        </div>
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:10%;"></div></div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:10%;"></div></div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#1A0A02;">Ai</div>
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/incontrast/lucozade-aj-warehouse.jpg" data-cap="Lucozade Anthony Joshua edition POS build">
+            <img src="assets/incontrast/lucozade-aj-warehouse.jpg" alt="Lucozade Anthony Joshua edition POS build"></div>
+        </div>
+        <div class="chain-shape shape-b clr-pink">
+          <span class="chain-title">POS Print Design</span>
+          We artwork a wide range of cardboard POS, from FSDUs to smaller 2D items like barkers and wobblers. Working from a single campaign concept, I adapt artwork across multiple cutter guides for consistency and precision.
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-row reveal">
+      <div class="hexcell divider-hex" data-full="assets/incontrast/pokemon-fsdu.png" data-cap="Pokémon card FSDU, modelled in Rhino">
+        <img src="assets/incontrast/pokemon-fsdu.png" alt="Pokémon card FSDU, modelled in Rhino"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/incontrast/pokemon-day-2026.png" data-cap="Pokémon Day 2026 activation concept">
+        <img src="assets/incontrast/pokemon-day-2026.png" alt="Pokémon Day 2026 activation concept"></div>
+      <div class="hexcell divider-hex" data-full="assets/incontrast/celsius-ferrari.jpg" data-cap="Celsius x Ferrari Vegas Race Day">
+        <img src="assets/incontrast/celsius-ferrari.jpg" alt="Celsius x Ferrari Vegas Race Day"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/incontrast/lucozade-busstop.jpg" data-cap="Lucozade Grafruitti bus-stop campaign">
+        <img src="assets/incontrast/lucozade-busstop.jpg" alt="Lucozade Grafruitti bus-stop campaign"></div>
+      <div class="hexcell divider-hex" data-full="assets/incontrast/whats-in-box-coasters.jpg" data-cap="What&#x27;s in the box QR coasters">
+        <img src="assets/incontrast/whats-in-box-coasters.jpg" alt="What&#x27;s in the box QR coasters"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/incontrast/flipz-webbanner.png" data-cap="Flipz website concept">
+        <img src="assets/incontrast/flipz-webbanner.png" alt="Flipz website concept"></div></div>
+
+    <div class="callout reveal">
+      <div>
+        <div class="eyebrow">First InContrast event · Event Design &amp; Planning</div>
+        <h3>InContrast InPerson</h3>
+        <p>Taking the lead on event work for the first time, I designed the full visual identity and helped plan our debut in-person event — from wayfinding signage and capability pillars to branded tote bags for every guest. Drawing on my experience running the Paris Blockchain Week design team, I owned this one from concept to install.</p>
+      </div>
+      <div class="callout-gallery">
+        <img src="assets/incontrast/inperson-rollup-banner.jpg" alt="InContrast InPerson wayfinding banner" data-full="assets/incontrast/inperson-rollup-banner.jpg" data-cap="InContrast InPerson wayfinding signage">
+        <img src="assets/incontrast/inperson-tote-shelf.jpg" alt="InContrast InPerson branded tote bags" data-full="assets/incontrast/inperson-tote-shelf.jpg" data-cap="Branded tote bags for every guest">
+        <img src="assets/incontrast/capability-pillars.jpg" alt="InContrast capability pillar signage" data-full="assets/incontrast/capability-pillars.jpg" data-cap="Studio Inc capability pillar signage">
+        <img src="assets/incontrast/capability-pillars-2.jpg" alt="InContrast stat pillar signage" data-full="assets/incontrast/capability-pillars-2.jpg" data-cap="Stat pillars: 76 Popai awards, 97% recycled content">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARIS BLOCKCHAIN WEEK -->
+<section id="pbw" class="job-section hexbg">
+  <div class="wrap">
+    <div class="job-header reveal">
+      <h2>Paris Blockchain Week</h2>
+      <div class="role">Graphic Design Manager · October 2023 – May 2025</div>
+    </div>
+    <p class="job-intro reveal">I have had to delegate different tasks in my team including social posts, emails, brochures and onsite print marketing from giant banners to coffee cups.</p>
+
+    <div class="chain-row reveal">
+      
+      <div class="chain-col">
+        <div class="chain-shape shape-a clr-pink">
+          <span class="chain-title">Onsite Print Marketing</span>
+          As Graphic Design Manager, I led my team in creating all print marketing for our event, including banners, merchandise, tickets, coffee cups and floor stickers — every design meticulously crafted, print-ready and accurately sized.
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/pbw/shannon-blue-pillar.png" data-cap="Shannon at the PBW venue installation">
+            <img src="assets/pbw/shannon-blue-pillar.png" alt="Shannon at the PBW venue installation"></div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#1A0A02;">Ai</div>
+        </div>
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:15%;"></div></div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:35%;"></div></div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#0A0A0A;">Fi</div>
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/pbw/vip-dinner-laptop.png" data-cap="VIP Dinner sub-site design">
+            <img src="assets/pbw/vip-dinner-laptop.png" alt="VIP Dinner sub-site design"></div>
+        </div>
+        <div class="chain-shape shape-b clr-teal">
+          <span class="chain-title">Website Design</span>
+          I design our website using Figma, focusing on a user-friendly experience that seamlessly guides visitors towards purchasing tickets, balancing aesthetics with functionality and a clear path to conversion.
+        </div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-shape shape-a clr-peach">
+          <span class="chain-title">Brochure</span>
+          I design brochures on Adobe Illustrator for our sales team across various events, ensuring every brochure aligns with each event's identity while staying cohesive, polished, and persuasive to potential clients.
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/pbw/brochure-mockup.png" data-cap="Sales brochure, designed in Illustrator">
+            <img src="assets/pbw/brochure-mockup.png" alt="Sales brochure, designed in Illustrator"></div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-peach"></div>
+          <div class="chain-icon" style="background:#1A0A02;">Ai</div>
+        </div>
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:10%;"></div></div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:5%;"></div></div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#3B0764;">Cv</div>
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/pbw/feedback-emails.png" data-cap="Post-event feedback email design">
+            <img src="assets/pbw/feedback-emails.png" alt="Post-event feedback email design"></div>
+        </div>
+        <div class="chain-shape shape-b clr-pink">
+          <span class="chain-title">Emails</span>
+          I design emails using Illustrator, Canva or Figma, tailored to different audiences with a focus on driving sales through compelling visuals and clear calls to action across promotions and event announcements.
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-row reveal">
+      <div class="hexcell divider-hex" data-full="assets/pbw/takeover-paris-eiffel.png" data-cap="Paris Blockchain Week is taking over Paris">
+        <img src="assets/pbw/takeover-paris-eiffel.png" alt="Paris Blockchain Week is taking over Paris"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/pbw/takeover-paris-statue.png" data-cap="Citywide blockchain takeover teaser">
+        <img src="assets/pbw/takeover-paris-statue.png" alt="Citywide blockchain takeover teaser"></div>
+      <div class="hexcell divider-hex" data-full="assets/pbw/hackathon-website.jpg" data-cap="Hackathon microsite design">
+        <img src="assets/pbw/hackathon-website.jpg" alt="Hackathon microsite design"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/pbw/open-block-website.jpg" data-cap="Open Block Unconference microsite">
+        <img src="assets/pbw/open-block-website.jpg" alt="Open Block Unconference microsite"></div>
+      <div class="hexcell divider-hex" data-full="assets/pbw/start-in-block.png" data-cap="Start in Block pitch competition">
+        <img src="assets/pbw/start-in-block.png" alt="Start in Block pitch competition"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/pbw/raise-summit.png" data-cap="RAISE Summit save the date">
+        <img src="assets/pbw/raise-summit.png" alt="RAISE Summit save the date"></div></div>
+  </div>
+</section>
+
+<!-- BIGJIGS TOYS -->
+<section id="bigjigs" class="job-section hexbg">
+  <div class="wrap">
+    <div class="job-header reveal">
+      <h2>Bigjigs Toys</h2>
+      <div class="role">Graphic Designer · April 2021 – 2023</div>
+    </div>
+    <p class="job-intro reveal">I had different assignments like vectors, packaging, catalogues, social media posts, toy, emails, web banners for different interactions and any other creative assignment I had been given.</p>
+
+    <div class="chain-row reveal">
+      
+      <div class="chain-col">
+        <div class="chain-shape shape-a clr-pink">
+          <span class="chain-title">Packaging</span>
+          I created packaging for our products, carefully adapting our guidelines to accommodate various box sizes, ensuring a consistent brand appearance and coordinating with printers to verify final quality.
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/bigjigs/shannon-holding-set-cut.jpg" data-cap="Shannon with the Roadway Race Day set">
+            <img src="assets/bigjigs/shannon-holding-set-cut.jpg" alt="Shannon with the Roadway Race Day set"></div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#1A0A02;">Ai</div>
+        </div>
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:15%;"></div></div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:15%;"></div></div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#1A0A02;">Ai</div>
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/bigjigs/website-laptop.png" data-cap="Bigjigs website banner design">
+            <img src="assets/bigjigs/website-laptop.png" alt="Bigjigs website banner design"></div>
+        </div>
+        <div class="chain-shape shape-b clr-teal">
+          <span class="chain-title">Web Banners</span>
+          I particularly enjoyed designing web banners, creating unique backgrounds, vectors and assets tailored to each theme while adhering to brand guidelines — eye-catching and visually interesting, never cluttered.
+        </div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-shape shape-a clr-peach">
+          <span class="chain-title">Catalogue</span>
+          I collaborated with other designers to produce 10 annual catalogues, dividing sections and using engaging, easy-to-navigate InDesign layouts with diverse photography, vectors and text.
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/bigjigs/catalogue-spread.png" data-cap="Annual catalogue spread">
+            <img src="assets/bigjigs/catalogue-spread.png" alt="Annual catalogue spread"></div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-peach"></div>
+          <div class="chain-icon" style="background:#450036;">Id</div>
+        </div>
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:25%;"></div></div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:40%;"></div></div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#E8792B;">F360</div>
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/bigjigs/dinosaur-playset-cut.jpg" data-cap="Dinosaur wooden playset design">
+            <img src="assets/bigjigs/dinosaur-playset-cut.jpg" alt="Dinosaur wooden playset design"></div>
+        </div>
+        <div class="chain-shape shape-b clr-pink">
+          <span class="chain-title">Toy Design</span>
+          I had the opportunity to design children's toys, learning new 3D software and producing factory-standard technical and art files — ensuring toys were safe and compliant with global guidelines.
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-row reveal">
+      <div class="hexcell divider-hex" data-full="assets/bigjigs/roadway-race-day-cut.jpg" data-cap="Roadway Race Day product photography">
+        <img src="assets/bigjigs/roadway-race-day-cut.jpg" alt="Roadway Race Day product photography"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/bigjigs/astronaut-figure.png" data-cap="3D printed astronaut concept figure">
+        <img src="assets/bigjigs/astronaut-figure.png" alt="3D printed astronaut concept figure"></div>
+      <div class="hexcell divider-hex" data-full="assets/bigjigs/indx-tablet-post.png" data-cap="INDX Home Toy trade show post">
+        <img src="assets/bigjigs/indx-tablet-post.png" alt="INDX Home Toy trade show post"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/bigjigs/toy-fair-phone-post.png" data-cap="Toy Fair recap social post">
+        <img src="assets/bigjigs/toy-fair-phone-post.png" alt="Toy Fair recap social post"></div></div>
+  </div>
+</section>
+
+<!-- FREELANCE -->
+<section id="freelance" class="job-section hexbg">
+  <div class="wrap">
+    <div class="job-header reveal">
+      <h2>Freelance</h2>
+      <div class="role">Ongoing · Personal Projects</div>
+    </div>
+    <p class="job-intro reveal">During my free time I enjoy doing some freelance work. I like being versatile so I have created different types of work for different customers including wedding stationery, business cards, photo edits and personalised prints.</p>
+
+    <div class="chain-row reveal">
+      
+      <div class="chain-col">
+        <div class="chain-shape shape-a clr-pink">
+          <span class="chain-title">Wedding Stationery</span>
+          Wedding invitations are exciting to create — customers want something that shouts "we're getting married" but also want it personal. I ask couples about their interests so I can create a truly personal invitation.
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/freelance/wedding-invite.png" data-cap="Wedding invitation and RSVP card">
+            <img src="assets/freelance/wedding-invite.png" alt="Wedding invitation and RSVP card"></div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#1A0A02;">Ai</div>
+        </div>
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:15%;"></div></div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:15%;"></div></div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#1A0A02;">Ai</div>
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/freelance/business-cards.png" data-cap="Photography Chrome business cards">
+            <img src="assets/freelance/business-cards.png" alt="Photography Chrome business cards"></div>
+        </div>
+        <div class="chain-shape shape-b clr-teal">
+          <span class="chain-title">Business Cards</span>
+          A recognisable brand has a pinnacle logo that needs to be plastered everywhere! I love word and picture play — creating a logo that emphasises the brand's identity in a fun, memorable way.
+        </div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-shape shape-a clr-peach">
+          <span class="chain-title">Photo Edits</span>
+          Photo manipulation is great fun — from levitating portraits to popping a dinosaur into wedding photos. A lot of my work has been for cosplayers wanting a relevant background to their costume.
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/freelance/surreal-photo-edit.png" data-cap="Surreal photo manipulation">
+            <img src="assets/freelance/surreal-photo-edit.png" alt="Surreal photo manipulation"></div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-peach"></div>
+          <div class="chain-icon" style="background:#001E36;">Ps</div>
+        </div>
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:30%;"></div></div>
+      </div>
+      <div class="chain-col">
+        <div class="chain-pill"><div class="chain-pill-fill" style="right:15%;"></div></div>
+        <div class="icon-wrap">
+          <div class="icon-hex hex clr-pink"></div>
+          <div class="chain-icon" style="background:#1A0A02;">Ai</div>
+        </div>
+        <div class="chain-hex">
+          <div class="hexcell" data-full="assets/freelance/bouquet-sketch.png" data-cap="Hand-drawn bouquet print">
+            <img src="assets/freelance/bouquet-sketch.png" alt="Hand-drawn bouquet print"></div>
+        </div>
+        <div class="chain-shape shape-b clr-pink">
+          <span class="chain-title">Personalised Prints</span>
+          There's always a spot in the house that could do with a print — from wedding bouquets to whimsical bathroom posters, starting from pen and paper then cleaning up in Illustrator.
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-row reveal">
+      <div class="hexcell divider-hex" data-full="assets/timeline/ralph-book.png" data-cap="Ralph Saves Christmas — illustrated children&#x27;s book">
+        <img src="assets/timeline/ralph-book.png" alt="Ralph Saves Christmas — illustrated children&#x27;s book"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/freelance/personalised-print-child.png" data-cap="Personalised print commission">
+        <img src="assets/freelance/personalised-print-child.png" alt="Personalised print commission"></div>
+      <div class="hexcell divider-hex" data-full="assets/extras/hex-free-rocket.png" data-cap="Free Rocket — personal project">
+        <img src="assets/extras/hex-free-rocket.png" alt="Free Rocket — personal project"></div>
+      <div class="hexcell divider-hex offset" data-full="assets/extras/hex-business-cards.png" data-cap="Photography Chrome business cards">
+        <img src="assets/extras/hex-business-cards.png" alt="Photography Chrome business cards"></div></div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <img id="lightboxImg" src="" alt="Full size preview">
+    <div class="lightbox-cap" id="lightboxCap"></div>
+  </div>
+</div>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact" class="hexbg">
+  <svg class="footer-decoration" viewBox="0 0 170 170" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="120,10 155,30 155,70 120,90 85,70 85,30" fill="var(--teal)"/>
+    <polygon points="55,50 90,70 90,110 55,130 20,110 20,70" fill="none" stroke="var(--peach-deep)" stroke-width="3"/>
+  </svg>
+  <div class="wrap">
+    <div class="footer-bar reveal">
+      <div class="footer-hex hex">
+        <div class="hex" style="width:26px;height:26px;background:var(--teal-deep);"></div>
+      </div>
+      <div class="footer-item">
+        <div class="fhex hex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 12l9-6H3l9 6z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 6v12h18V6" stroke="white" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <a href="mailto:shannonwhelan31@yahoo.co.uk">shannonwhelan31@yahoo.co.uk</a>
+      </div>
+      <div class="footer-item">
+        <div class="fhex hex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.8"/><path d="M8 16l4-7 4 7-4-2-4 2z" fill="white"/></svg>
+        </div>
+        <a href="https://instagram.com/shanneth31" target="_blank" rel="noopener">#Simply.Creative.Store<br>#Shanneth31</a>
+      </div>
+      <div class="footer-item">
+        <div class="fhex hex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="2" stroke="white" stroke-width="1.8"/><circle cx="12" cy="18" r="0.8" fill="white"/></svg>
+        </div>
+        <a href="tel:07927676214">07927676214</a>
+      </div>
+    </div>
+    <div class="foot-bottom">Designed &amp; illustrated by Shannon Whelan · © 2026</div>
+  </div>
+</footer>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCap = document.getElementById('lightboxCap');
+  const closeBtn = document.getElementById('lightboxClose');
+
+  function openLightbox(src, cap){
+    lightboxImg.src = src;
+    lightboxCap.textContent = cap || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-full]').forEach(el=>{
+    el.addEventListener('click', ()=> openLightbox(el.getAttribute('data-full'), el.getAttribute('data-cap')));
+    el.setAttribute('tabindex','0');
+    el.setAttribute('role','button');
+    el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openLightbox(el.getAttribute('data-full'), el.getAttribute('data-cap')); }});
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+
+  if('IntersectionObserver' in window){
+    document.documentElement.classList.add('js-anim');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  }
+</script>
+
+</body>
+</html>
