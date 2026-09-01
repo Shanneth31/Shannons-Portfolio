@@ -54,6 +54,7 @@
   .hex-strip{
     position:absolute; left:0; right:0; height:100%;
     background-image:url('assets/hex-pattern-bg.png');
+    background-repeat:repeat-x;
     background-size:auto 340px;
     background-position:top center;
     opacity:0.9;
@@ -152,10 +153,21 @@
   .skill-others ul{ columns:2; padding-left:18px; margin:0; line-height:1.85; list-style:disc; }
 
   /* True tessellation honeycomb (skills gallery + dividers) */
-  .honeytess{ display:grid; grid-template-columns:repeat(3, 1fr); }
-  .honeytess .hexcell{ margin-right:-25%; box-sizing:border-box; }
-  .honeytess .hexcell:nth-child(3n+2){ margin-top:46%; }
-  @media (max-width:640px){ .honeytess{grid-template-columns:repeat(2,1fr);} .honeytess .hexcell:nth-child(3n+2){margin-top:0;} .honeytess .hexcell:nth-child(2n){margin-top:46%;} }
+  .honeytess{ display:flex; flex-direction:column; overflow:hidden; }
+  .hc-row{ display:flex; }
+  .hc-row + .hc-row{ margin-top:-9.5%; }
+  .hc-row .hexcell{ width:33.333%; flex:0 0 33.333%; }
+  .hc-row.offset{ margin-left:16.667%; }
+  .honeytess .hexcell{
+    aspect-ratio: 0.88 / 1;
+    clip-path: polygon(50% 3%, 95% 26%, 95% 74%, 50% 97%, 5% 74%, 5% 26%);
+    -webkit-clip-path: polygon(50% 3%, 95% 26%, 95% 74%, 50% 97%, 5% 74%, 5% 26%);
+  }
+  @media (max-width:640px){
+    .hc-row .hexcell{ width:50%; flex:0 0 50%; }
+    .hc-row.offset{ margin-left:25%; }
+    .hc-row + .hc-row{ margin-top:-14.2%; }
+  }
   .hexcell.filler{ cursor:default; }
   .hexcell.filler:hover{ transform:none; }
 
@@ -407,21 +419,27 @@
         </div>
 
         <div class="honeytess">
-          <div class="hexcell" data-full="assets/bigjigs/indx-tablet-post.png" data-cap="INDX Home Toy trade show post">
-            <img src="assets/bigjigs/indx-tablet-post.png" alt="INDX Home Toy fair social post"></div>
-          <div class="hexcell" data-full="assets/pbw/time-is-ticking-phone.png" data-cap="Time is ticking countdown post">
-            <img src="assets/pbw/time-is-ticking-phone.png" alt="Time is ticking countdown post"></div>
-          <div class="hexcell filler" style="background:var(--pink-light);"></div>
-          <div class="hexcell" data-full="assets/pbw/sponsors-tablet-post.png" data-cap="2024 sponsors social post">
-            <img src="assets/pbw/sponsors-tablet-post.png" alt="PBW sponsors social post"></div>
-          <div class="hexcell" data-full="assets/bigjigs/toy-fair-phone-post.png" data-cap="Toy Fair recap social post">
-            <img src="assets/bigjigs/toy-fair-phone-post.png" alt="Toy Fair social post"></div>
-          <div class="hexcell filler" style="background:var(--teal);"></div>
-          <div class="hexcell" data-full="assets/pbw/take-the-bull-tablet.png" data-cap="Take the bull by the horns campaign">
-            <img src="assets/pbw/take-the-bull-tablet.png" alt="Take the bull by the horns post"></div>
-          <div class="hexcell" data-full="assets/incontrast/flipz-socials.jpg" data-cap="Flipz social ad variants">
-            <img src="assets/incontrast/flipz-socials.jpg" alt="Flipz social ad mockups"></div>
-          <div class="hexcell filler" style="background:var(--peach);"></div>
+          <div class="hc-row">
+            <div class="hexcell" data-full="assets/bigjigs/indx-tablet-post.png" data-cap="INDX Home Toy trade show post">
+              <img src="assets/bigjigs/indx-tablet-post.png" alt="INDX Home Toy fair social post"></div>
+            <div class="hexcell" data-full="assets/pbw/time-is-ticking-phone.png" data-cap="Time is ticking countdown post">
+              <img src="assets/pbw/time-is-ticking-phone.png" alt="Time is ticking countdown post"></div>
+            <div class="hexcell filler" style="background:var(--pink-light);"></div>
+          </div>
+          <div class="hc-row offset">
+            <div class="hexcell" data-full="assets/pbw/sponsors-tablet-post.png" data-cap="2024 sponsors social post">
+              <img src="assets/pbw/sponsors-tablet-post.png" alt="PBW sponsors social post"></div>
+            <div class="hexcell" data-full="assets/bigjigs/toy-fair-phone-post.png" data-cap="Toy Fair recap social post">
+              <img src="assets/bigjigs/toy-fair-phone-post.png" alt="Toy Fair social post"></div>
+            <div class="hexcell filler" style="background:var(--teal);"></div>
+          </div>
+          <div class="hc-row">
+            <div class="hexcell" data-full="assets/pbw/take-the-bull-tablet.png" data-cap="Take the bull by the horns campaign">
+              <img src="assets/pbw/take-the-bull-tablet.png" alt="Take the bull by the horns post"></div>
+            <div class="hexcell" data-full="assets/incontrast/flipz-socials.jpg" data-cap="Flipz social ad variants">
+              <img src="assets/incontrast/flipz-socials.jpg" alt="Flipz social ad mockups"></div>
+            <div class="hexcell filler" style="background:var(--peach);"></div>
+          </div>
         </div>
       </div>
     </div>
