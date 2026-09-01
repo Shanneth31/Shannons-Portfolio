@@ -154,10 +154,10 @@
 
   /* True tessellation honeycomb (skills gallery + dividers) */
   .honeytess{ display:flex; flex-direction:column; overflow:hidden; }
-  .hc-row{ display:flex; }
+  .hc-row{ display:flex; width:100%; }
   .hc-row + .hc-row{ margin-top:-9.5%; }
   .hc-row .hexcell{ width:33.333%; flex:0 0 33.333%; }
-  .hc-row.offset{ margin-left:16.667%; }
+  .hc-spacer{ flex:0 0 16.667%; width:16.667%; }
   .honeytess .hexcell{
     aspect-ratio: 0.88 / 1;
     clip-path: polygon(50% 3%, 95% 26%, 95% 74%, 50% 97%, 5% 74%, 5% 26%);
@@ -165,7 +165,7 @@
   }
   @media (max-width:640px){
     .hc-row .hexcell{ width:50%; flex:0 0 50%; }
-    .hc-row.offset{ margin-left:25%; }
+    .hc-spacer{ flex:0 0 25%; width:25%; }
     .hc-row + .hc-row{ margin-top:-14.2%; }
   }
   .hexcell.filler{ cursor:default; }
@@ -426,7 +426,8 @@
               <img src="assets/pbw/time-is-ticking-phone.png" alt="Time is ticking countdown post"></div>
             <div class="hexcell filler" style="background:var(--pink-light);"></div>
           </div>
-          <div class="hc-row offset">
+          <div class="hc-row">
+            <div class="hc-spacer"></div>
             <div class="hexcell" data-full="assets/pbw/sponsors-tablet-post.png" data-cap="2024 sponsors social post">
               <img src="assets/pbw/sponsors-tablet-post.png" alt="PBW sponsors social post"></div>
             <div class="hexcell" data-full="assets/bigjigs/toy-fair-phone-post.png" data-cap="Toy Fair recap social post">
