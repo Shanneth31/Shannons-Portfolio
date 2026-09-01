@@ -206,62 +206,53 @@
 
   .job-col{ display:flex; flex-direction:column; align-items:stretch; }
 
-  .card-round-top{
-    width:100%; padding:26px 20px 60px; color:white; text-align:center;
-    border-radius: 100px 100px 0 0; box-sizing:border-box; font-size:0.84rem; line-height:1.6; font-weight:400;
+  .text-pill{
+    width:74%; margin:0 auto; padding:40px 22px; color:white; text-align:center;
+    border-radius:100px; box-sizing:border-box; font-size:0.84rem; line-height:1.6; font-weight:400;
+    position:relative; z-index:1; min-height:220px; display:flex; flex-direction:column; justify-content:center;
   }
-  .card-round-bottom{
-    width:100%; padding:60px 20px 26px; color:white; text-align:center;
-    border-radius: 0 0 100px 100px; box-sizing:border-box; font-size:0.84rem; line-height:1.6; font-weight:400;
-    position:relative; z-index:1;
-  }
-  .card-round-bottom.overlap-up{ margin-top:-15%; }
+  .text-pill.pill-top{ padding-bottom:64px; border-radius:100px 100px 0 0; }
+  .text-pill.pill-bottom{ padding-top:64px; border-radius:0 0 100px 100px; }
   .chain-title{ font-weight:800; font-size:0.8rem; letter-spacing:.03em; text-transform:uppercase; display:block; margin-bottom:8px; }
 
-  .hex-frame{ position:relative; width:82%; margin:0 auto; z-index:2; }
-  .hex-frame.overlap-up{ margin-top:-15%; }
-  .hex-frame.below-icon{ margin-top:10px; }
-  .hex-frame::before{
-    content:''; position:absolute; inset:-4%; background:white;
-    clip-path: polygon(25% 1%, 75% 1%, 100% 50%, 75% 99%, 25% 99%, 0% 50%);
+  .chain-hex-frame{ position:relative; width:74%; margin:0 auto; aspect-ratio:0.866/1; z-index:2; cursor:pointer; overflow:hidden; }
+  .chain-hex-frame.pull-up{ margin-top:-20%; }
+  .chain-hex-frame.pull-down{ margin-bottom:-20%; }
+  .chain-hex-frame::before{
+    content:''; position:absolute; left:0; right:0; background:var(--cc, var(--pink)); z-index:0;
   }
-  .hex-frame .hexcell{ position:relative; z-index:1; }
-
-  /* Job-section hexagons rotated 90° — point at top/bottom, flat sides */
-  .hex-frame.point-top{ margin-top:0; }
-  .hex-frame.point-top::before{
-    inset:-3%;
+  .chain-hex-frame.pull-up::before{ top:0; height:50%; }
+  .chain-hex-frame.pull-down::before{ bottom:0; height:50%; }
+  .chain-hex-cell{
+    position:absolute; inset:0; background:var(--peach); z-index:1;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1);
   }
-  .hex-frame.point-top .hexcell{
-    aspect-ratio: 0.88 / 1;
-    clip-path: polygon(50% 3%, 95% 26%, 95% 74%, 50% 97%, 5% 74%, 5% 26%);
-    -webkit-clip-path: polygon(50% 3%, 95% 26%, 95% 74%, 50% 97%, 5% 74%, 5% 26%);
-  }
+  .chain-hex-frame:hover .chain-hex-cell{ transform:scale(1.05); }
+  .chain-hex-cell img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-  /* Wedge that fuses the card seamlessly into the point-top hex below/above it */
-  .hex-connector{
-    width:30%; height:22px; margin:-1px auto 0; position:relative; z-index:2;
-    background:var(--cc, var(--pink));
-    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-  }
-  .hex-connector.flip{
-    margin:0 auto -1px;
-    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-  }
-
-  .icon-wrap{ position:relative; width:60px; height:60px; margin:10px auto; }
+  .icon-wrap{ position:relative; width:56px; height:56px; margin:6px auto; z-index:3; }
   .icon-hex{ position:absolute; inset:0; }
   .icon-logo{ position:absolute; width:60%; height:60%; left:50%; top:50%; transform:translate(-50%,-50%); object-fit:contain; }
   .chain-pill{ width:78%; height:26px; border-radius:100px; border:2px solid var(--pink); margin:0 auto; background:white; position:relative; overflow:hidden; }
   .chain-pill-fill{ position:absolute; inset:2px; border-radius:100px; background:var(--teal); }
 
   /* ---------- Single-row divider honeycomb ---------- */
-  .divider-row{ display:flex; justify-content:center; align-items:flex-start; margin:64px 0 10px; flex-wrap:wrap; }
-  .divider-hex{ width:15%; max-width:170px; margin:0 -1.9%; }
-  .divider-hex.offset{ margin-top:9%; }
-  @media (max-width:900px){ .divider-hex{ width:26%; margin:0 -3.4%; } .divider-hex.offset{ margin-top:15%; } }
-  @media (max-width:560px){ .divider-hex{ width:38%; margin:0 -4.6% 8px; } .divider-hex.offset{ margin-top:19%; } }
+  .divider-row{ display:flex; flex-direction:column; overflow:hidden; max-width:800px; margin:64px auto 10px; }
+  .divider-row .hc-row{ display:flex; width:100%; }
+  .divider-row .hc-row + .hc-row{ margin-top:-9.5%; }
+  .divider-row .hc-row .hexcell{ width:33.333%; flex:0 0 33.333%; }
+  .divider-row .hc-spacer{ flex:0 0 16.667%; width:16.667%; }
+  .divider-row.cols4{ max-width:900px; }
+  .divider-row.cols4 .hc-row + .hc-row{ margin-top:-7.1%; }
+  .divider-row.cols4 .hc-row .hexcell{ width:25%; flex:0 0 25%; }
+  .divider-row.cols4 .hc-spacer{ flex:0 0 12.5%; width:12.5%; }
+  .divider-row .hexcell{
+    aspect-ratio: 0.88 / 1;
+    clip-path: polygon(50% 3%, 95% 26%, 95% 74%, 50% 97%, 5% 74%, 5% 26%);
+    -webkit-clip-path: polygon(50% 3%, 95% 26%, 95% 74%, 50% 97%, 5% 74%, 5% 26%);
+  }
 
   /* InContrast InPerson callout */
   .callout{
@@ -465,13 +456,12 @@
     <div class="chain-row reveal">
       
       <div class="job-col">
-        <div class="card-round-top" style="background:#F08E94;">
+        <div class="text-pill pill-top" style="background:#F08E94;">
           <span class="chain-title">Prepress</span>
           I'm responsible for prepress preparation across a wide range of cardboard POS. This involves checking bleed, colour accuracy in CMYK, image resolution, and file linking, ensuring all elements align correctly with cutter lines.
         </div>
-        <div class="hex-connector" style="--cc:#F08E94;"></div>
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/incontrast/harrypotter-kinderjoy-cut.jpg" data-cap="Harry Potter x Kinder Joy FSDU">
+        <div class="chain-hex-frame pull-up" style="--cc:#F08E94;">
+          <div class="chain-hex-cell" data-full="assets/incontrast/harrypotter-kinderjoy-cut.jpg" data-cap="Harry Potter x Kinder Joy FSDU">
             <img src="assets/incontrast/harrypotter-kinderjoy-cut.jpg" alt="Harry Potter x Kinder Joy FSDU"></div>
         </div>
         
@@ -489,24 +479,22 @@
           <img class="icon-logo" src="assets/software/rhino.png" alt="">
         </div>
         
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/incontrast/flipz-fsdu-cut.jpg" data-cap="Flipz retail display unit">
+        <div class="chain-hex-frame pull-down" style="--cc:#A5D7DB;">
+          <div class="chain-hex-cell" data-full="assets/incontrast/flipz-fsdu-cut.jpg" data-cap="Flipz retail display unit">
             <img src="assets/incontrast/flipz-fsdu-cut.jpg" alt="Flipz retail display unit"></div>
         </div>
-        <div class="hex-connector flip" style="--cc:#A5D7DB;"></div>
-        <div class="card-round-bottom" style="background:#A5D7DB;">
+        <div class="text-pill pill-bottom" style="background:#A5D7DB;">
           <span class="chain-title">3D + Conceptual Development</span>
           Alongside prepress, I've developed skills in Rhino 8, producing industry-standard 3D models of POS structures. I conceptualise high-impact display solutions and help bring "wow factor" campaigns to life.
         </div>
       </div>
       <div class="job-col">
-        <div class="card-round-top" style="background:#F9BE87;">
+        <div class="text-pill pill-top" style="background:#F9BE87;">
           <span class="chain-title">Studio Inc</span>
           Working with the team, I help manage a shared client inbox, scheduling and coordinating projects including 2D POS, digital marketing and externally printed materials — balancing multiple deadlines and client expectations.
         </div>
-        <div class="hex-connector" style="--cc:#F9BE87;"></div>
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/incontrast/capability-pillars.jpg" data-cap="Studio Inc capability pillar signage">
+        <div class="chain-hex-frame pull-up" style="--cc:#F9BE87;">
+          <div class="chain-hex-cell" data-full="assets/incontrast/capability-pillars.jpg" data-cap="Studio Inc capability pillar signage">
             <img src="assets/incontrast/capability-pillars.jpg" alt="Studio Inc capability pillar signage"></div>
         </div>
         
@@ -524,19 +512,21 @@
           <img class="icon-logo" src="assets/software/ai.png" alt="">
         </div>
         
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/incontrast/lucozade-aj-warehouse.jpg" data-cap="Lucozade Anthony Joshua edition POS build">
+        <div class="chain-hex-frame pull-down" style="--cc:#F6BCC3;">
+          <div class="chain-hex-cell" data-full="assets/incontrast/lucozade-aj-warehouse.jpg" data-cap="Lucozade Anthony Joshua edition POS build">
             <img src="assets/incontrast/lucozade-aj-warehouse.jpg" alt="Lucozade Anthony Joshua edition POS build"></div>
         </div>
-        <div class="hex-connector flip" style="--cc:#F6BCC3;"></div>
-        <div class="card-round-bottom" style="background:#F6BCC3;">
+        <div class="text-pill pill-bottom" style="background:#F6BCC3;">
           <span class="chain-title">POS Print Design</span>
           We artwork a wide range of cardboard POS, from FSDUs to smaller 2D items like barkers and wobblers. Working from a single campaign concept, I adapt artwork across multiple cutter guides for consistency and precision.
         </div>
       </div>
     </div>
 
-    <div class="divider-row reveal"><div class="hexcell divider-hex" data-full="assets/incontrast/pokemon-fsdu.png" data-cap="Pokémon card FSDU, modelled in Rhino"><img src="assets/incontrast/pokemon-fsdu.png" alt="Pokémon card FSDU, modelled in Rhino"></div><div class="hexcell divider-hex offset" data-full="assets/incontrast/pokemon-day-2026.png" data-cap="Pokémon Day 2026 activation concept"><img src="assets/incontrast/pokemon-day-2026.png" alt="Pokémon Day 2026 activation concept"></div><div class="hexcell divider-hex" data-full="assets/incontrast/celsius-ferrari.jpg" data-cap="Celsius x Ferrari Vegas Race Day"><img src="assets/incontrast/celsius-ferrari.jpg" alt="Celsius x Ferrari Vegas Race Day"></div><div class="hexcell divider-hex offset" data-full="assets/incontrast/lucozade-busstop.jpg" data-cap="Lucozade Grafruitti bus-stop campaign"><img src="assets/incontrast/lucozade-busstop.jpg" alt="Lucozade Grafruitti bus-stop campaign"></div><div class="hexcell divider-hex" data-full="assets/incontrast/whats-in-box-coasters.jpg" data-cap="What&#x27;s in the box QR coasters"><img src="assets/incontrast/whats-in-box-coasters.jpg" alt="What&#x27;s in the box QR coasters"></div><div class="hexcell divider-hex offset" data-full="assets/incontrast/flipz-webbanner.png" data-cap="Flipz website concept"><img src="assets/incontrast/flipz-webbanner.png" alt="Flipz website concept"></div><div class="hexcell divider-hex filler" style="background:#F9BE87;"></div><div class="hexcell divider-hex filler offset" style="background:#F6BCC3;"></div></div>
+    <div class="divider-row reveal cols4">
+      <div class="hc-row"><div class="hexcell" data-full="assets/incontrast/pokemon-fsdu.png" data-cap="Pokémon card FSDU, modelled in Rhino"><img src="assets/incontrast/pokemon-fsdu.png" alt="Pokémon card FSDU, modelled in Rhino"></div><div class="hexcell" data-full="assets/incontrast/pokemon-day-2026.png" data-cap="Pokémon Day 2026 activation concept"><img src="assets/incontrast/pokemon-day-2026.png" alt="Pokémon Day 2026 activation concept"></div><div class="hexcell" data-full="assets/incontrast/celsius-ferrari.jpg" data-cap="Celsius x Ferrari Vegas Race Day"><img src="assets/incontrast/celsius-ferrari.jpg" alt="Celsius x Ferrari Vegas Race Day"></div><div class="hexcell" data-full="assets/incontrast/lucozade-busstop.jpg" data-cap="Lucozade Grafruitti bus-stop campaign"><img src="assets/incontrast/lucozade-busstop.jpg" alt="Lucozade Grafruitti bus-stop campaign"></div></div>
+      <div class="hc-row"><div class="hc-spacer"></div><div class="hexcell" data-full="assets/incontrast/whats-in-box-coasters.jpg" data-cap="What&#x27;s in the box QR coasters"><img src="assets/incontrast/whats-in-box-coasters.jpg" alt="What&#x27;s in the box QR coasters"></div><div class="hexcell" data-full="assets/incontrast/flipz-webbanner.png" data-cap="Flipz website concept"><img src="assets/incontrast/flipz-webbanner.png" alt="Flipz website concept"></div><div class="hexcell filler" style="background:#F9BE87;"></div><div class="hexcell filler" style="background:#F6BCC3;"></div></div>
+    </div>
 
     <div class="callout reveal">
       <div>
@@ -568,13 +558,12 @@
     <div class="chain-row reveal">
       
       <div class="job-col">
-        <div class="card-round-top" style="background:#F08E94;">
+        <div class="text-pill pill-top" style="background:#F08E94;">
           <span class="chain-title">Onsite Print Marketing</span>
           As Graphic Design Manager, I led my team in creating all print marketing for our event, including banners, merchandise, tickets, coffee cups and floor stickers — every design meticulously crafted, print-ready and accurately sized.
         </div>
-        <div class="hex-connector" style="--cc:#F08E94;"></div>
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/pbw/shannon-blue-pillar.png" data-cap="Shannon at the PBW venue installation">
+        <div class="chain-hex-frame pull-up" style="--cc:#F08E94;">
+          <div class="chain-hex-cell" data-full="assets/pbw/shannon-blue-pillar.png" data-cap="Shannon at the PBW venue installation">
             <img src="assets/pbw/shannon-blue-pillar.png" alt="Shannon at the PBW venue installation"></div>
         </div>
         
@@ -592,24 +581,22 @@
           <img class="icon-logo" src="assets/software/figma.png" alt="">
         </div>
         
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/pbw/vip-dinner-laptop.png" data-cap="VIP Dinner sub-site design">
+        <div class="chain-hex-frame pull-down" style="--cc:#A5D7DB;">
+          <div class="chain-hex-cell" data-full="assets/pbw/vip-dinner-laptop.png" data-cap="VIP Dinner sub-site design">
             <img src="assets/pbw/vip-dinner-laptop.png" alt="VIP Dinner sub-site design"></div>
         </div>
-        <div class="hex-connector flip" style="--cc:#A5D7DB;"></div>
-        <div class="card-round-bottom" style="background:#A5D7DB;">
+        <div class="text-pill pill-bottom" style="background:#A5D7DB;">
           <span class="chain-title">Website Design</span>
           I design our website using Figma, focusing on a user-friendly experience that seamlessly guides visitors towards purchasing tickets, balancing aesthetics with functionality and a clear path to conversion.
         </div>
       </div>
       <div class="job-col">
-        <div class="card-round-top" style="background:#F9BE87;">
+        <div class="text-pill pill-top" style="background:#F9BE87;">
           <span class="chain-title">Brochure</span>
           I design brochures on Adobe Illustrator for our sales team across various events, ensuring every brochure aligns with each event's identity while staying cohesive, polished, and persuasive to potential clients.
         </div>
-        <div class="hex-connector" style="--cc:#F9BE87;"></div>
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/pbw/brochure-mockup.png" data-cap="Sales brochure, designed in Illustrator">
+        <div class="chain-hex-frame pull-up" style="--cc:#F9BE87;">
+          <div class="chain-hex-cell" data-full="assets/pbw/brochure-mockup.png" data-cap="Sales brochure, designed in Illustrator">
             <img src="assets/pbw/brochure-mockup.png" alt="Sales brochure, designed in Illustrator"></div>
         </div>
         
@@ -627,19 +614,21 @@
           <img class="icon-logo" src="assets/software/figma.png" alt="">
         </div>
         
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/pbw/feedback-emails.png" data-cap="Post-event feedback email design">
+        <div class="chain-hex-frame pull-down" style="--cc:#F6BCC3;">
+          <div class="chain-hex-cell" data-full="assets/pbw/feedback-emails.png" data-cap="Post-event feedback email design">
             <img src="assets/pbw/feedback-emails.png" alt="Post-event feedback email design"></div>
         </div>
-        <div class="hex-connector flip" style="--cc:#F6BCC3;"></div>
-        <div class="card-round-bottom" style="background:#F6BCC3;">
+        <div class="text-pill pill-bottom" style="background:#F6BCC3;">
           <span class="chain-title">Emails</span>
           I design emails using Illustrator, Canva or Figma, tailored to different audiences with a focus on driving sales through compelling visuals and clear calls to action across promotions and event announcements.
         </div>
       </div>
     </div>
 
-    <div class="divider-row reveal"><div class="hexcell divider-hex" data-full="assets/pbw/takeover-paris-eiffel.png" data-cap="Paris Blockchain Week is taking over Paris"><img src="assets/pbw/takeover-paris-eiffel.png" alt="Paris Blockchain Week is taking over Paris"></div><div class="hexcell divider-hex offset" data-full="assets/pbw/takeover-paris-statue.png" data-cap="Citywide blockchain takeover teaser"><img src="assets/pbw/takeover-paris-statue.png" alt="Citywide blockchain takeover teaser"></div><div class="hexcell divider-hex" data-full="assets/pbw/hackathon-website.jpg" data-cap="Hackathon microsite design"><img src="assets/pbw/hackathon-website.jpg" alt="Hackathon microsite design"></div><div class="hexcell divider-hex offset" data-full="assets/pbw/open-block-website.jpg" data-cap="Open Block Unconference microsite"><img src="assets/pbw/open-block-website.jpg" alt="Open Block Unconference microsite"></div><div class="hexcell divider-hex" data-full="assets/pbw/start-in-block.png" data-cap="Start in Block pitch competition"><img src="assets/pbw/start-in-block.png" alt="Start in Block pitch competition"></div><div class="hexcell divider-hex offset" data-full="assets/pbw/raise-summit.png" data-cap="RAISE Summit save the date"><img src="assets/pbw/raise-summit.png" alt="RAISE Summit save the date"></div><div class="hexcell divider-hex filler" style="background:#A5D7DB;"></div><div class="hexcell divider-hex filler offset" style="background:#F08E94;"></div></div>
+    <div class="divider-row reveal cols4">
+      <div class="hc-row"><div class="hexcell" data-full="assets/pbw/takeover-paris-eiffel.png" data-cap="Paris Blockchain Week is taking over Paris"><img src="assets/pbw/takeover-paris-eiffel.png" alt="Paris Blockchain Week is taking over Paris"></div><div class="hexcell" data-full="assets/pbw/takeover-paris-statue.png" data-cap="Citywide blockchain takeover teaser"><img src="assets/pbw/takeover-paris-statue.png" alt="Citywide blockchain takeover teaser"></div><div class="hexcell" data-full="assets/pbw/hackathon-website.jpg" data-cap="Hackathon microsite design"><img src="assets/pbw/hackathon-website.jpg" alt="Hackathon microsite design"></div><div class="hexcell" data-full="assets/pbw/open-block-website.jpg" data-cap="Open Block Unconference microsite"><img src="assets/pbw/open-block-website.jpg" alt="Open Block Unconference microsite"></div></div>
+      <div class="hc-row"><div class="hc-spacer"></div><div class="hexcell" data-full="assets/pbw/start-in-block.png" data-cap="Start in Block pitch competition"><img src="assets/pbw/start-in-block.png" alt="Start in Block pitch competition"></div><div class="hexcell" data-full="assets/pbw/raise-summit.png" data-cap="RAISE Summit save the date"><img src="assets/pbw/raise-summit.png" alt="RAISE Summit save the date"></div><div class="hexcell filler" style="background:#A5D7DB;"></div><div class="hexcell filler" style="background:#F08E94;"></div></div>
+    </div>
   </div>
 </section>
 
@@ -657,13 +646,12 @@
     <div class="chain-row reveal">
       
       <div class="job-col">
-        <div class="card-round-top" style="background:#F08E94;">
+        <div class="text-pill pill-top" style="background:#F08E94;">
           <span class="chain-title">Packaging</span>
           I created packaging for our products, carefully adapting our guidelines to accommodate various box sizes, ensuring a consistent brand appearance and coordinating with printers to verify final quality.
         </div>
-        <div class="hex-connector" style="--cc:#F08E94;"></div>
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/bigjigs/shannon-holding-set-cut.jpg" data-cap="Shannon with the Roadway Race Day set">
+        <div class="chain-hex-frame pull-up" style="--cc:#F08E94;">
+          <div class="chain-hex-cell" data-full="assets/bigjigs/shannon-holding-set-cut.jpg" data-cap="Shannon with the Roadway Race Day set">
             <img src="assets/bigjigs/shannon-holding-set-cut.jpg" alt="Shannon with the Roadway Race Day set"></div>
         </div>
         
@@ -681,24 +669,22 @@
           <img class="icon-logo" src="assets/software/ai.png" alt="">
         </div>
         
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/bigjigs/website-laptop.png" data-cap="Bigjigs website banner design">
+        <div class="chain-hex-frame pull-down" style="--cc:#A5D7DB;">
+          <div class="chain-hex-cell" data-full="assets/bigjigs/website-laptop.png" data-cap="Bigjigs website banner design">
             <img src="assets/bigjigs/website-laptop.png" alt="Bigjigs website banner design"></div>
         </div>
-        <div class="hex-connector flip" style="--cc:#A5D7DB;"></div>
-        <div class="card-round-bottom" style="background:#A5D7DB;">
+        <div class="text-pill pill-bottom" style="background:#A5D7DB;">
           <span class="chain-title">Web Banners</span>
           I particularly enjoyed designing web banners, creating unique backgrounds, vectors and assets tailored to each theme while adhering to brand guidelines — eye-catching and visually interesting, never cluttered.
         </div>
       </div>
       <div class="job-col">
-        <div class="card-round-top" style="background:#F9BE87;">
+        <div class="text-pill pill-top" style="background:#F9BE87;">
           <span class="chain-title">Catalogue</span>
           I collaborated with other designers to produce 10 annual catalogues, dividing sections and using engaging, easy-to-navigate InDesign layouts with diverse photography, vectors and text.
         </div>
-        <div class="hex-connector" style="--cc:#F9BE87;"></div>
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/bigjigs/catalogue-spread.png" data-cap="Annual catalogue spread">
+        <div class="chain-hex-frame pull-up" style="--cc:#F9BE87;">
+          <div class="chain-hex-cell" data-full="assets/bigjigs/catalogue-spread.png" data-cap="Annual catalogue spread">
             <img src="assets/bigjigs/catalogue-spread.png" alt="Annual catalogue spread"></div>
         </div>
         
@@ -716,19 +702,21 @@
           <img class="icon-logo" src="assets/software/blender.png" alt="">
         </div>
         
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/bigjigs/dinosaur-playset-cut.jpg" data-cap="Dinosaur wooden playset design">
+        <div class="chain-hex-frame pull-down" style="--cc:#F6BCC3;">
+          <div class="chain-hex-cell" data-full="assets/bigjigs/dinosaur-playset-cut.jpg" data-cap="Dinosaur wooden playset design">
             <img src="assets/bigjigs/dinosaur-playset-cut.jpg" alt="Dinosaur wooden playset design"></div>
         </div>
-        <div class="hex-connector flip" style="--cc:#F6BCC3;"></div>
-        <div class="card-round-bottom" style="background:#F6BCC3;">
+        <div class="text-pill pill-bottom" style="background:#F6BCC3;">
           <span class="chain-title">Toy Design</span>
           I had the opportunity to design children's toys, learning new 3D software and producing factory-standard technical and art files — ensuring toys were safe and compliant with global guidelines.
         </div>
       </div>
     </div>
 
-    <div class="divider-row reveal"><div class="hexcell divider-hex" data-full="assets/bigjigs/roadway-race-day-cut.jpg" data-cap="Roadway Race Day product photography"><img src="assets/bigjigs/roadway-race-day-cut.jpg" alt="Roadway Race Day product photography"></div><div class="hexcell divider-hex offset" data-full="assets/bigjigs/astronaut-figure.png" data-cap="3D printed astronaut concept figure"><img src="assets/bigjigs/astronaut-figure.png" alt="3D printed astronaut concept figure"></div><div class="hexcell divider-hex" data-full="assets/bigjigs/indx-tablet-post.png" data-cap="INDX Home Toy trade show post"><img src="assets/bigjigs/indx-tablet-post.png" alt="INDX Home Toy trade show post"></div><div class="hexcell divider-hex offset" data-full="assets/bigjigs/toy-fair-phone-post.png" data-cap="Toy Fair recap social post"><img src="assets/bigjigs/toy-fair-phone-post.png" alt="Toy Fair recap social post"></div><div class="hexcell divider-hex filler" style="background:#F9BE87;"></div><div class="hexcell divider-hex filler offset" style="background:#A5D7DB;"></div></div>
+    <div class="divider-row reveal">
+      <div class="hc-row"><div class="hexcell" data-full="assets/bigjigs/roadway-race-day-cut.jpg" data-cap="Roadway Race Day product photography"><img src="assets/bigjigs/roadway-race-day-cut.jpg" alt="Roadway Race Day product photography"></div><div class="hexcell" data-full="assets/bigjigs/astronaut-figure.png" data-cap="3D printed astronaut concept figure"><img src="assets/bigjigs/astronaut-figure.png" alt="3D printed astronaut concept figure"></div><div class="hexcell" data-full="assets/bigjigs/indx-tablet-post.png" data-cap="INDX Home Toy trade show post"><img src="assets/bigjigs/indx-tablet-post.png" alt="INDX Home Toy trade show post"></div></div>
+      <div class="hc-row"><div class="hc-spacer"></div><div class="hexcell" data-full="assets/bigjigs/toy-fair-phone-post.png" data-cap="Toy Fair recap social post"><img src="assets/bigjigs/toy-fair-phone-post.png" alt="Toy Fair recap social post"></div><div class="hexcell filler" style="background:#F9BE87;"></div><div class="hexcell filler" style="background:#A5D7DB;"></div></div>
+    </div>
   </div>
 </section>
 
@@ -746,13 +734,12 @@
     <div class="chain-row reveal">
       
       <div class="job-col">
-        <div class="card-round-top" style="background:#F08E94;">
+        <div class="text-pill pill-top" style="background:#F08E94;">
           <span class="chain-title">Wedding Stationery</span>
           Wedding invitations are exciting to create — customers want something that shouts "we're getting married" but also want it personal. I ask couples about their interests so I can create a truly personal invitation.
         </div>
-        <div class="hex-connector" style="--cc:#F08E94;"></div>
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/freelance/wedding-invite.png" data-cap="Wedding invitation and RSVP card">
+        <div class="chain-hex-frame pull-up" style="--cc:#F08E94;">
+          <div class="chain-hex-cell" data-full="assets/freelance/wedding-invite.png" data-cap="Wedding invitation and RSVP card">
             <img src="assets/freelance/wedding-invite.png" alt="Wedding invitation and RSVP card"></div>
         </div>
         
@@ -770,24 +757,22 @@
           <img class="icon-logo" src="assets/software/ai.png" alt="">
         </div>
         
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/freelance/business-cards.png" data-cap="Photography Chrome business cards">
+        <div class="chain-hex-frame pull-down" style="--cc:#A5D7DB;">
+          <div class="chain-hex-cell" data-full="assets/freelance/business-cards.png" data-cap="Photography Chrome business cards">
             <img src="assets/freelance/business-cards.png" alt="Photography Chrome business cards"></div>
         </div>
-        <div class="hex-connector flip" style="--cc:#A5D7DB;"></div>
-        <div class="card-round-bottom" style="background:#A5D7DB;">
+        <div class="text-pill pill-bottom" style="background:#A5D7DB;">
           <span class="chain-title">Business Cards</span>
           A recognisable brand has a pinnacle logo that needs to be plastered everywhere! I love word and picture play — creating a logo that emphasises the brand's identity in a fun, memorable way.
         </div>
       </div>
       <div class="job-col">
-        <div class="card-round-top" style="background:#F9BE87;">
+        <div class="text-pill pill-top" style="background:#F9BE87;">
           <span class="chain-title">Photo Edits</span>
           Photo manipulation is great fun — from levitating portraits to popping a dinosaur into wedding photos. A lot of my work has been for cosplayers wanting a relevant background to their costume.
         </div>
-        <div class="hex-connector" style="--cc:#F9BE87;"></div>
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/freelance/surreal-photo-edit.png" data-cap="Surreal photo manipulation">
+        <div class="chain-hex-frame pull-up" style="--cc:#F9BE87;">
+          <div class="chain-hex-cell" data-full="assets/freelance/surreal-photo-edit.png" data-cap="Surreal photo manipulation">
             <img src="assets/freelance/surreal-photo-edit.png" alt="Surreal photo manipulation"></div>
         </div>
         
@@ -805,19 +790,21 @@
           <img class="icon-logo" src="assets/software/ai.png" alt="">
         </div>
         
-        <div class="hex-frame point-top">
-          <div class="hexcell" data-full="assets/freelance/bouquet-sketch.png" data-cap="Hand-drawn bouquet print">
+        <div class="chain-hex-frame pull-down" style="--cc:#F6BCC3;">
+          <div class="chain-hex-cell" data-full="assets/freelance/bouquet-sketch.png" data-cap="Hand-drawn bouquet print">
             <img src="assets/freelance/bouquet-sketch.png" alt="Hand-drawn bouquet print"></div>
         </div>
-        <div class="hex-connector flip" style="--cc:#F6BCC3;"></div>
-        <div class="card-round-bottom" style="background:#F6BCC3;">
+        <div class="text-pill pill-bottom" style="background:#F6BCC3;">
           <span class="chain-title">Personalised Prints</span>
           There's always a spot in the house that could do with a print — from wedding bouquets to whimsical bathroom posters, starting from pen and paper then cleaning up in Illustrator.
         </div>
       </div>
     </div>
 
-    <div class="divider-row reveal"><div class="hexcell divider-hex" data-full="assets/timeline/ralph-book.png" data-cap="Ralph Saves Christmas — illustrated children&#x27;s book"><img src="assets/timeline/ralph-book.png" alt="Ralph Saves Christmas — illustrated children&#x27;s book"></div><div class="hexcell divider-hex offset" data-full="assets/freelance/personalised-print-child.png" data-cap="Personalised print commission"><img src="assets/freelance/personalised-print-child.png" alt="Personalised print commission"></div><div class="hexcell divider-hex" data-full="assets/extras/hex-free-rocket.png" data-cap="Free Rocket — personal project"><img src="assets/extras/hex-free-rocket.png" alt="Free Rocket — personal project"></div><div class="hexcell divider-hex offset" data-full="assets/extras/hex-business-cards.png" data-cap="Photography Chrome business cards"><img src="assets/extras/hex-business-cards.png" alt="Photography Chrome business cards"></div><div class="hexcell divider-hex filler" style="background:#A5D7DB;"></div><div class="hexcell divider-hex filler offset" style="background:#F9BE87;"></div></div>
+    <div class="divider-row reveal">
+      <div class="hc-row"><div class="hexcell" data-full="assets/timeline/ralph-book.png" data-cap="Ralph Saves Christmas — illustrated children&#x27;s book"><img src="assets/timeline/ralph-book.png" alt="Ralph Saves Christmas — illustrated children&#x27;s book"></div><div class="hexcell" data-full="assets/freelance/personalised-print-child.png" data-cap="Personalised print commission"><img src="assets/freelance/personalised-print-child.png" alt="Personalised print commission"></div><div class="hexcell" data-full="assets/extras/hex-free-rocket.png" data-cap="Free Rocket — personal project"><img src="assets/extras/hex-free-rocket.png" alt="Free Rocket — personal project"></div></div>
+      <div class="hc-row"><div class="hc-spacer"></div><div class="hexcell" data-full="assets/extras/hex-business-cards.png" data-cap="Photography Chrome business cards"><img src="assets/extras/hex-business-cards.png" alt="Photography Chrome business cards"></div><div class="hexcell filler" style="background:#A5D7DB;"></div><div class="hexcell filler" style="background:#F9BE87;"></div></div>
+    </div>
   </div>
 </section>
 
